@@ -94,7 +94,7 @@ public class MainWindow extends JFrame {
 		buttonPanel.add(bKundenverwaltung);
 		buttonPanel.add(bVerfuegbarkeit);
 
-		/**
+		/*
 		 * Einbindung vom Image
 		 */
 
