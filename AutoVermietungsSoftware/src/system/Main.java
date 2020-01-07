@@ -12,9 +12,11 @@ package system;
  */
 public class Main {
 
+
+    public static String wichtigeInformation = "Willkommen bei der Verwaltung";
 /**
  * 
- * @param args
+ * @param args Test Description
  */
     public static void main(String[] args) {
         new MainWindow();
