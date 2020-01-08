@@ -6,7 +6,6 @@
 package system;
 
 import java.awt.*;
-import javax.smartcardio.Card;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -26,37 +25,24 @@ import javax.swing.border.Border;
 
 public class MainWindow extends JFrame {
 
-
+	JPanel panelMainMenue = new JPanel();	// Erstellung der Arbeitsflaeche des Hauptmenue-Fensters
+	JPanel panelKundenverwaltungMenue  = new JPanel(); // Erstellung des KDVW Menues
+	JPanel panelAutoverwaltung = new JPanel();	// Erstellung des AUVW Menues
 
 	// Variablendeklaration
-	JPanel headerPanel, buttonPanel, footerPanel;
-	JLabel headerMainWindow, headerKundenVerwaltung, headerFahrzeugVerwaltung;
-	JLabel endText;
+	JPanel headerPanel = new JPanel();
+	JPanel buttonPanel = new JPanel();
+	JPanel footerPanel = new JPanel();
+
+	JLabel textHeaderMainWindow, headerKundenVerwaltung, headerFahrzeugVerwaltung;
 	JButton bFahrzeugverwaltung, bKundenverwaltung, bVerfuegbarkeit;
+	JLabel textFooter;
 
-
-	//This is a Test
-	JPanel contentPanel = new JPanel(); // Erstellung der Arbeitsebene (der Box)
-	JPanel panelMain = new JPanel();	// Erstellung der ersten Karte
-	JPanel panelKundenverwaltung  = new JPanel(); // Erstellung der Karte KDVW
-	JPanel panelAutoverwaltung = new JPanel();	// Erstellung der Karte AUVW
-	//Test End
-
+	// KONSTRUKTOR!
 	public MainWindow() {
-
-		/*
-		  CardLayout Deklaration der einzelnen Panels/Karten.
-		 */
-		CardLayout cl = new CardLayout(); // Erstellung des CL Objekts, der Wolke
-		contentPanel.setLayout(cl);
-		//panelMain.add(headerPanel);
-
-
-
 		/*
 		 * Initialisierung & Anpassung Frame & Title
 		 */
-		setLayout(new BorderLayout());
 		setTitle("Car Rental System for S.E. at THB");
 		setSize(800, 600);
 		setLocationRelativeTo(null); // zentriert das Fenster in die Mitte,
@@ -69,12 +55,10 @@ public class MainWindow extends JFrame {
 		 *  MainwWindow, Kundenverwaltung, Fahrzeugverwaltung, Verfügbarkeit
  		 */
 
-		headerPanel = new JPanel();
-		add(headerPanel);
-		// Definition der Schriftart
+		// Definition der Schriftart für den Header
 		Font schriftartHeader = new Font("Serif", Font.PLAIN + Font.ITALIC, 40);
 
-		// headerKundenVerwaltung
+/*		// headerKundenVerwaltung
 		headerKundenVerwaltung = new JLabel("Kundenverwaltung");
 		headerKundenVerwaltung.setHorizontalAlignment(JLabel.CENTER);
 		headerKundenVerwaltung.setVerticalAlignment(JLabel.CENTER);
@@ -84,23 +68,21 @@ public class MainWindow extends JFrame {
 		headerKundenVerwaltung.setOpaque(true);
 		headerKundenVerwaltung.setBackground(Color.gray);
 		// Das Zentrum des Geschehens - fügt den Text hinzu & platziert ihn oben.
-		headerPanel.add(headerKundenVerwaltung, BorderLayout.NORTH); // fügt das Text-Label oben hinzu.
+
+		headerPanel.add(headerKundenVerwaltung, BorderLayout.NORTH); // fügt das Text-Label oben hinzu.*/
 
 			// headerMainWindow
-		headerMainWindow = new JLabel("Verwaltungsprogramm v 1.0");
-		headerMainWindow.setHorizontalAlignment(JLabel.CENTER);
-		headerMainWindow.setVerticalAlignment(JLabel.CENTER);
-		headerMainWindow.setFont(schriftartHeader); // legt die Schriftart fest.
-		// Führt dazu, dass die Hintergrundfarbe vom Textfeld angezeigt wird.
-		headerMainWindow.setOpaque(true);
-		headerMainWindow.setBackground(Color.gray);
-		// Das Zentrum des Geschehens - fügt den Text hinzu & platziert ihn oben.
-		add(headerMainWindow, BorderLayout.NORTH); // fügt das Text-Label oben hinzu.
+		textHeaderMainWindow = new JLabel("Verwaltungsprogramm v 1.0");
+		textHeaderMainWindow.setHorizontalAlignment(JLabel.CENTER);
+		textHeaderMainWindow.setVerticalAlignment(JLabel.CENTER);
+		textHeaderMainWindow.setFont(schriftartHeader); // legt die Schriftart fest.
+
+		headerPanel.setBackground(Color.GRAY);
+		headerPanel.setOpaque(true);
+		headerPanel.add(textHeaderMainWindow);
 
 		// Die Mitte 'center' bekommt ein Panel für die Buttons
-		buttonPanel = new JPanel();
 		buttonPanel.setLayout(null);
-		add(buttonPanel);
 		// Black Border um das ButtonPanel
 		Border border = BorderFactory.createLineBorder(Color.BLACK);
 		buttonPanel.setBorder(border);
@@ -138,26 +120,31 @@ public class MainWindow extends JFrame {
 		/*
 		 * Initialisierung & Anpassung Größe - Footer Text
 		 */
-		footerPanel = new JPanel();
 
-		endText = new JLabel(
+		textFooter = new JLabel(
 		"Created by: Nico Zahmel, Christopher Alb, " + "Wilhelm Wöhlte, Mirko Reefschläger, Torben Hammes");
 		// endText.setHorizontalAlignment(JLabel.RIGHT);
 /*		endText.setVerticalAlignment(JLabel.CENTER);
 		endText.setHorizontalAlignment(JLabel.CENTER);*/
-		add(footerPanel, BorderLayout.SOUTH);
-		footerPanel.setBackground(Color.RED);
 
 		// Definition der Schriftart
 		Font schriftartFooter = new Font("Serif", Font.PLAIN + Font.ITALIC, 19);
-		endText.setFont(schriftartFooter); // legt die Schriftart fest.
+		textFooter.setFont(schriftartFooter); // legt die Schriftart fest.
 
-		// Führt dazu, dass die Hintergrundfarbe vom Textfeld angezeigt wird.
-		endText.setOpaque(true);
-		endText.setBackground(Color.RED);
+		// Das Zentrum des Geschehens - fügt den Text hinzu & platziert ihn im footerPanel
+		footerPanel.add(textFooter); // fügt das Text-Label unten hinzu.
+		footerPanel.setBackground(Color.RED);
 
-		// Das Zentrum des Geschehens - fügt den Text hinzu & platziert ihn unten.
-		footerPanel.add(endText); // fügt das Text-Label unten hinzu.
+				/*
+		  Definition der Hauptarbeitsebene
+		 */
+		panelMainMenue.setLayout(new BorderLayout());
+
+
+		panelMainMenue.add(headerPanel, BorderLayout.NORTH);
+		panelMainMenue.add(buttonPanel, BorderLayout.CENTER);
+		panelMainMenue.add(footerPanel, BorderLayout.SOUTH);
+
 
 		// Swing Timer in Action - war ein Versuch, kann ignoriert werden.
 		// final int labelwidth = 800;
@@ -197,19 +184,22 @@ public class MainWindow extends JFrame {
 			/*
 			  Sobald der Btn in Action ist, wird headerMainWinndow verdeckt & headerKundenVerwaltung aufgedeckt.
 			 */
-			headerPanel.setVisible(false);
+			remove(panelMainMenue);
+			add(panelKundenverwaltungMenue);
+			revalidate();
+			repaint();
 
 			//JOptionPane.showMessageDialog(null, "Willkommen in der Fahrzeugverwaltung!");
 		});
 		bFahrzeugverwaltung.addActionListener(e -> {
 			JOptionPane.showMessageDialog(null, Main.wichtigeInformation);
-			headerPanel.setVisible(true);
 		});
 		bVerfuegbarkeit.addActionListener(e -> {
-			bFahrzeugverwaltung.setVisible(true);
 			JOptionPane.showMessageDialog(null, "Willkommen im Verfügbarkeits Check!");
 		});
 
+
+		add(panelMainMenue);
 		setVisible(true); // muss hinter allen adds gesetzt werden, ansonsten treten Probleme auf.
 	}
 
