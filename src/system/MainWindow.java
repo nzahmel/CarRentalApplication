@@ -24,24 +24,28 @@ import javax.swing.border.Border;
  */
 
 public class MainWindow extends JFrame {
-
+	// Variablendeklaration
 	JPanel panelMainMenue = new JPanel();	// Erstellung der Arbeitsflaeche des Hauptmenue-Fensters
 	JPanel panelKundenverwaltungMenue  = new JPanel(); // Erstellung des KDVW Menues
-	JPanel panelAutoverwaltung = new JPanel();	// Erstellung des AUVW Menues
+	JPanel panelAutoverwaltungMenue = new JPanel();	// Erstellung des AUVW Menues
 
-	// Variablendeklaration
-	JPanel headerPanel = new JPanel();
-	JPanel buttonPanel = new JPanel();
+	JPanel headerPanelM = new JPanel(); // für das MainMenue
+	JPanel headerPanelK = new JPanel(); // für das KundenMenue
+	JPanel headerPanelA = new JPanel(); // für das AutoMenue
+	JPanel buttonPanelM = new JPanel();
 	JPanel footerPanel = new JPanel();
 
-	JLabel textHeaderMainWindow, headerKundenVerwaltung, headerFahrzeugVerwaltung;
-	JButton bFahrzeugverwaltung, bKundenverwaltung, bVerfuegbarkeit;
+	JLabel textHeaderMainMenue = new JLabel("Verwaltungsprogramm v 1.0");
+	JLabel textHeaderKundenVerwaltung = new JLabel("Kundenverwaltung");
+	JLabel textHeaderFahrzeugVerwaltung = new JLabel("Autoverwaltung");
 	JLabel textFooter;
+	JButton bFahrzeugverwaltung, bKundenverwaltung, bVerfuegbarkeit;
+
 
 	// KONSTRUKTOR!
 	public MainWindow() {
 		/*
-		 * Initialisierung & Anpassung Frame & Title
+		 * Initialisierung & Anpassung JFrame & Title
 		 */
 		setTitle("Car Rental System for S.E. at THB");
 		setSize(800, 600);
@@ -58,36 +62,37 @@ public class MainWindow extends JFrame {
 		// Definition der Schriftart für den Header
 		Font schriftartHeader = new Font("Serif", Font.PLAIN + Font.ITALIC, 40);
 
-/*		// headerKundenVerwaltung
-		headerKundenVerwaltung = new JLabel("Kundenverwaltung");
-		headerKundenVerwaltung.setHorizontalAlignment(JLabel.CENTER);
-		headerKundenVerwaltung.setVerticalAlignment(JLabel.CENTER);
-		// Definition der Schriftart
-		headerKundenVerwaltung.setFont(schriftartHeader); // legt die Schriftart fest.
-		// Führt dazu, dass die Hintergrundfarbe vom Textfeld angezeigt wird.
-		headerKundenVerwaltung.setOpaque(true);
-		headerKundenVerwaltung.setBackground(Color.gray);
-		// Das Zentrum des Geschehens - fügt den Text hinzu & platziert ihn oben.
+			// headerMainMenue
+		textHeaderMainMenue.setHorizontalAlignment(JLabel.CENTER);
+		textHeaderMainMenue.setVerticalAlignment(JLabel.CENTER);
+		textHeaderMainMenue.setFont(schriftartHeader); // legt die Schriftart fest.
+		headerPanelM.setBackground(Color.GRAY);
+		headerPanelM.setOpaque(true);
+		headerPanelM.add(textHeaderMainMenue);
 
-		headerPanel.add(headerKundenVerwaltung, BorderLayout.NORTH); // fügt das Text-Label oben hinzu.*/
+			//headerKundenMenue
+		textHeaderKundenVerwaltung.setHorizontalAlignment(JLabel.CENTER);
+		textHeaderKundenVerwaltung.setVerticalAlignment(JLabel.CENTER);
+		textHeaderKundenVerwaltung.setFont(schriftartHeader); // legt die Schriftart fest.
+		headerPanelK.setBackground(Color.GRAY);
+		headerPanelK.setOpaque(true);
+		headerPanelK.add(textHeaderKundenVerwaltung);
 
-			// headerMainWindow
-		textHeaderMainWindow = new JLabel("Verwaltungsprogramm v 1.0");
-		textHeaderMainWindow.setHorizontalAlignment(JLabel.CENTER);
-		textHeaderMainWindow.setVerticalAlignment(JLabel.CENTER);
-		textHeaderMainWindow.setFont(schriftartHeader); // legt die Schriftart fest.
-
-		headerPanel.setBackground(Color.GRAY);
-		headerPanel.setOpaque(true);
-		headerPanel.add(textHeaderMainWindow);
+		// headerAutoMenue
+		textHeaderFahrzeugVerwaltung.setHorizontalAlignment(JLabel.CENTER);
+		textHeaderFahrzeugVerwaltung.setVerticalAlignment(JLabel.CENTER);
+		textHeaderFahrzeugVerwaltung.setFont(schriftartHeader); // legt die Schriftart fest.
+		headerPanelA.setBackground(Color.GRAY);
+		headerPanelA.setOpaque(true);
+		headerPanelA.add(textHeaderFahrzeugVerwaltung);
 
 		// Die Mitte 'center' bekommt ein Panel für die Buttons
-		buttonPanel.setLayout(null);
-		// Black Border um das ButtonPanel
-		Border border = BorderFactory.createLineBorder(Color.BLACK);
-		buttonPanel.setBorder(border);
+		buttonPanelM.setLayout(null);
+		Border border = BorderFactory.createLineBorder(Color.BLACK); 	// Black Border um das ButtonPanel
+		buttonPanelM.setBorder(border);
 
-		// Initialisierung Buttons
+		// TODO: 09.01.2020 Back-Button erstellen & integrieren
+		// TODO: 09.01.2020 Initialisierung Buttons 1. Menue "Kundenverwaltung": hinz, loesch, bearb
 		bKundenverwaltung = new JButton("Kundenverwaltung");
 		bFahrzeugverwaltung = new JButton("Fahrzeugverwaltung");
 		bVerfuegbarkeit = new JButton("Verfügbarkeit");
@@ -103,9 +108,9 @@ public class MainWindow extends JFrame {
 		bFahrzeugverwaltung.setBounds(50, 200, 250, 100);
 		bVerfuegbarkeit.setBounds(50, 330, 250, 100);
 
-		buttonPanel.add(bFahrzeugverwaltung);
-		buttonPanel.add(bKundenverwaltung);
-		buttonPanel.add(bVerfuegbarkeit);
+		buttonPanelM.add(bFahrzeugverwaltung);
+		buttonPanelM.add(bKundenverwaltung);
+		buttonPanelM.add(bVerfuegbarkeit);
 
 
 		/*
@@ -114,7 +119,7 @@ public class MainWindow extends JFrame {
 		JLabel jl = new JLabel();
 		jl.setIcon(new ImageIcon("image/autoklein.png"));
 		jl.setBounds(350, 100, 400, 300);
-		buttonPanel.add(jl);
+		buttonPanelM.add(jl);
 		//validate();
 
 		/*
@@ -136,14 +141,16 @@ public class MainWindow extends JFrame {
 		footerPanel.setBackground(Color.RED);
 
 				/*
-		  Definition der Hauptarbeitsebene
+		  Definition der Haupt-Ebenen
 		 */
 		panelMainMenue.setLayout(new BorderLayout());
+		panelKundenverwaltungMenue.setLayout(new BorderLayout());
+		panelAutoverwaltungMenue.setLayout(new BorderLayout());
 
-
-		panelMainMenue.add(headerPanel, BorderLayout.NORTH);
-		panelMainMenue.add(buttonPanel, BorderLayout.CENTER);
+		panelMainMenue.add(headerPanelM, BorderLayout.NORTH);
+		panelMainMenue.add(buttonPanelM, BorderLayout.CENTER);
 		panelMainMenue.add(footerPanel, BorderLayout.SOUTH);
+
 
 
 		// Swing Timer in Action - war ein Versuch, kann ignoriert werden.
@@ -162,37 +169,26 @@ public class MainWindow extends JFrame {
 		  Logical Part
 		 */
 
-		/*
-		 * Handler komplett ersetzt durch Lambdas - steht hier nurnoch für bessere
-		 * Nachvollziehbarkeit. Lösung inline-version direkt unter dem auskommentiertem
-		 * Bereich:
-		 */
-
-		// // Handler verleiht den Buttons seine Funktionalität.
-		// DerHandler handler = new DerHandler();
-		// // Bevor Klasse DerHandler erstellt und definiert wird,
-		// // ActionListener hinzufügen & handler als Objekt übergeben.
-		// bFahrzeugverwaltung.addActionListener(handler); // ActionsListener passt auf,
-		// ob etwas passiert
-		// bKundenverwaltung.addActionListener(handler); // & weiß, was dann zu tun ist.
-		// bVerfuegbarkeit.addActionListener(handler);
-
-
-
 		// Lambda Version für Button-Funktionalität.
 		bKundenverwaltung.addActionListener(e -> {
 			/*
-			  Sobald der Btn in Action ist, wird headerMainWinndow verdeckt & headerKundenVerwaltung aufgedeckt.
+			  Sobald der Btn in Action ist, wird panelMainMenue entfernt & panelKundenverwaltungMenue initialisiert.
 			 */
 			remove(panelMainMenue);
 			add(panelKundenverwaltungMenue);
+			panelKundenverwaltungMenue.add(headerPanelK, BorderLayout.NORTH);
+			panelKundenverwaltungMenue.add(footerPanel, BorderLayout.SOUTH);
 			revalidate();
 			repaint();
-
-			//JOptionPane.showMessageDialog(null, "Willkommen in der Fahrzeugverwaltung!");
 		});
+
 		bFahrzeugverwaltung.addActionListener(e -> {
-			JOptionPane.showMessageDialog(null, Main.wichtigeInformation);
+			remove(panelMainMenue);
+			add(panelAutoverwaltungMenue);
+			panelAutoverwaltungMenue.add(headerPanelA, BorderLayout.NORTH);
+			panelAutoverwaltungMenue.add(footerPanel, BorderLayout.SOUTH);
+			revalidate();
+			repaint();
 		});
 		bVerfuegbarkeit.addActionListener(e -> {
 			JOptionPane.showMessageDialog(null, "Willkommen im Verfügbarkeits Check!");
