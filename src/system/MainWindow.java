@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+// TODO: 09.01.2020 Package-Namen anpassen.
 package system;
 
 import java.awt.*;
@@ -32,13 +33,14 @@ public class MainWindow extends JFrame {
 	JPanel headerPanelM = new JPanel(); // für das MainMenue
 	JPanel headerPanelK = new JPanel(); // für das KundenMenue
 	JPanel headerPanelA = new JPanel(); // für das AutoMenue
-	JPanel buttonPanelM = new JPanel();
-	JPanel footerPanel = new JPanel();
+	JPanel buttonPanelM = new JPanel(); // für das MainMenue
+	JPanel footerPanel = new JPanel();  // für alle Menues
 
 	JLabel textHeaderMainMenue = new JLabel("Verwaltungsprogramm v 1.0");
 	JLabel textHeaderKundenVerwaltung = new JLabel("Kundenverwaltung");
 	JLabel textHeaderFahrzeugVerwaltung = new JLabel("Autoverwaltung");
 	JLabel textFooter;
+
 	JButton bFahrzeugverwaltung, bKundenverwaltung, bVerfuegbarkeit;
 
 
@@ -91,8 +93,11 @@ public class MainWindow extends JFrame {
 		Border border = BorderFactory.createLineBorder(Color.BLACK); 	// Black Border um das ButtonPanel
 		buttonPanelM.setBorder(border);
 
-		// TODO: 09.01.2020 Back-Button erstellen & integrieren
+		// TODO: 09.01.2020 JSPLIT Layout + Back-Button erstellen & integrieren
 		// TODO: 09.01.2020 Initialisierung Buttons 1. Menue "Kundenverwaltung": hinz, loesch, bearb
+		/*
+		Buttons MAINMENUE
+		 */
 		bKundenverwaltung = new JButton("Kundenverwaltung");
 		bFahrzeugverwaltung = new JButton("Fahrzeugverwaltung");
 		bVerfuegbarkeit = new JButton("Verfügbarkeit");
@@ -104,21 +109,20 @@ public class MainWindow extends JFrame {
 		bKundenverwaltung.setFont(schriftartButtons);
 		bVerfuegbarkeit.setFont(schriftartButtons);
 
-		bKundenverwaltung.setBounds(50, 70, 250, 100);
-		bFahrzeugverwaltung.setBounds(50, 200, 250, 100);
-		bVerfuegbarkeit.setBounds(50, 330, 250, 100);
+		bKundenverwaltung.setBounds(50, 50, 250, 100);
+		bFahrzeugverwaltung.setBounds(50, 180, 250, 100);
+		bVerfuegbarkeit.setBounds(50, 310, 250, 100);
 
 		buttonPanelM.add(bFahrzeugverwaltung);
 		buttonPanelM.add(bKundenverwaltung);
 		buttonPanelM.add(bVerfuegbarkeit);
-
 
 		/*
 		 * Einbindung vom Image mit einem JLabel
 		 */
 		JLabel jl = new JLabel();
 		jl.setIcon(new ImageIcon("image/autoklein.png"));
-		jl.setBounds(350, 100, 400, 300);
+		jl.setBounds(350, 80, 400, 300);
 		buttonPanelM.add(jl);
 		//validate();
 
@@ -150,8 +154,6 @@ public class MainWindow extends JFrame {
 		panelMainMenue.add(headerPanelM, BorderLayout.NORTH);
 		panelMainMenue.add(buttonPanelM, BorderLayout.CENTER);
 		panelMainMenue.add(footerPanel, BorderLayout.SOUTH);
-
-
 
 		// Swing Timer in Action - war ein Versuch, kann ignoriert werden.
 		// final int labelwidth = 800;
@@ -191,7 +193,7 @@ public class MainWindow extends JFrame {
 			repaint();
 		});
 		bVerfuegbarkeit.addActionListener(e -> {
-			JOptionPane.showMessageDialog(null, "Willkommen im Verfügbarkeits Check!");
+			//JOptionPane.showMessageDialog(null, "Willkommen im Verfügbarkeits Check!");
 		});
 
 
