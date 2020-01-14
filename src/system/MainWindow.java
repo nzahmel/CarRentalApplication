@@ -22,7 +22,7 @@ public class MainWindow extends JFrame {
 	// Variablendeklaration
 
 	JPanel panelMainMenue = new JPanel();	// Erstellung der Arbeitsflaeche des Hauptmenue-Fensters
-	JPanel panelKundenverwaltungMenue  = new JPanel(); // Erstellung des KDVW Menues
+	JPanel panelKundenverwaltungMenue  = new Testfenster(); //new JPanel(); // Erstellung des KDVW Menues
 	JPanel panelAutoverwaltungMenue = new JPanel();	// Erstellung des AUVW Menues
 
 	JPanel headerPanelM = new JPanel(); // für das MainMenue
@@ -53,9 +53,11 @@ public class MainWindow extends JFrame {
 
 /*	KundenverwaltungWindow kundenverwaltung = new KundenverwaltungWindow(this); */
 	// >>> Übergabe des Objekts an die Klasse vorerst deaktiviert, bis zur Reaktivierung.
+	//Testfenster testfensterWin = new Testfenster(this);
 
 	// KONSTRUKTOR!
 	public MainWindow() {
+
 		/*
 		 * Initialisierung & Anpassung JFrame & Title
 		 */
@@ -150,6 +152,7 @@ public class MainWindow extends JFrame {
 
 
 									// <<<<<< Kundenverwaltung >>>>>>>
+/*
 
 		// Content-Panel vom KundenMenue
 		panelKundenverwaltungMenue.setLayout(new BorderLayout());
@@ -163,6 +166,7 @@ public class MainWindow extends JFrame {
 		headerPanelK.add(textHeaderKundenVerwaltung);
 		panelKundenverwaltungMenue.add(headerPanelK, BorderLayout.NORTH);
 
+*/
 
 									// <<<<<< Autoverwaltung >>>>>>>
 
@@ -201,7 +205,7 @@ public class MainWindow extends JFrame {
 		bKundenverwaltung.addActionListener(e -> {
 
 /*			kundenverwaltung.open(); <<<<<<<< Bleibt vorerst deaktiviert.*/
-
+			//testfensterWin.open();
 
 			/*
 			  Sobald der Btn in Action ist, wird panelMainMenue entfernt & panelKundenverwaltungMenue initialisiert.
@@ -224,10 +228,8 @@ public class MainWindow extends JFrame {
 			//JOptionPane.showMessageDialog(null, "Willkommen im Verfügbarkeits Check!");
 		});
 
-
 		add(panelMainMenue);
 		setVisible(true); // muss hinter allen adds gesetzt werden, ansonsten treten Probleme auf.
-		System.out.println(buttonPanelMRechts.getSize());
 	}
 
 	/*
