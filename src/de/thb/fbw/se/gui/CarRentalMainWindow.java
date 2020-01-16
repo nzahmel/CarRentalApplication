@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 // TODO: 09.01.2020 Package-Namen anpassen.
-package system;
+package de.thb.fbw.se.gui;
 
 import java.awt.*;
 import javax.swing.*;
@@ -18,29 +18,25 @@ import javax.swing.border.Border;
  *          vector created by rawpixel.com - www.freepik.com</a>
  */
 
-public class MainWindow extends JFrame {
+public class CarRentalMainWindow extends JFrame {
 	// Variablendeklaration
 
 	JPanel panelMainMenue = new JPanel();	// Erstellung der Arbeitsflaeche des Hauptmenue-Fensters
-	JPanel panelKundenverwaltungMenue  = new Testfenster(); //new JPanel(); // Erstellung des KDVW Menues
-	JPanel panelAutoverwaltungMenue = new JPanel();	// Erstellung des AUVW Menues
+	JPanel panelKundenverwaltungMenue  = new CustomerManagement(); //new JPanel(); // Erstellung des KDVW Menues
+	JPanel panelAutoverwaltungMenue = new CarManagement();	// Erstellung des AUVW Menues
 
 	JPanel headerPanelM = new JPanel(); // für das MainMenue
-	JPanel headerPanelK = new JPanel(); // für das KundenMenue
-	JPanel headerPanelA = new JPanel(); // für das AutoMenue
 	JPanel buttonPanelM = new JPanel(); // für das MainMenue
 	Box buttonPanelMLinks = Box.createVerticalBox(); // ButtonPanelMainLinks
 	Box buttonPanelMRechts = Box.createVerticalBox(); // ButtonPanelMainRechts
 	JPanel footerPanel = new JPanel();  // für alle Menues
 
 	JLabel textHeaderMainMenue = new JLabel("Verwaltungsprogramm v 1.0");
-	JLabel textHeaderKundenVerwaltung = new JLabel("Kundenverwaltung");
-	JLabel textHeaderFahrzeugVerwaltung = new JLabel("Autoverwaltung");
 	JLabel textFooter = new JLabel(
 			"Created by: Nico Zahmel, Christopher Alb, " + "Wilhelm Wöhlte, Mirko Reefschläger, Torben Hammes");
 
-	JButton bKundenverwaltung = new JButton(" Kundenverwaltung  ");
-	JButton bFahrzeugverwaltung = new JButton("Fahrzeugverwaltung");
+	JButton bCustomerManagement = new JButton(" Kundenverwaltung  ");
+	JButton bCarManagement = new JButton("Fahrzeugverwaltung");
 	JButton bVerfuegbarkeit = new JButton("    Verfügbarkeit      ");
 
 	// Definition der Schriftart für den Header
@@ -56,7 +52,8 @@ public class MainWindow extends JFrame {
 	//Testfenster testfensterWin = new Testfenster(this);
 
 	// KONSTRUKTOR!
-	public MainWindow() {
+	public CarRentalMainWindow() {
+
 
 		/*
 		 * Initialisierung & Anpassung JFrame & Title
@@ -105,24 +102,24 @@ public class MainWindow extends JFrame {
 		 */
 
 		// Zuweisung der Attribute der Buttons von MainMenue
-		bFahrzeugverwaltung.setFont(schriftartButtons);
-		bKundenverwaltung.setFont(schriftartButtons);
+		bCarManagement.setFont(schriftartButtons);
+		bCustomerManagement.setFont(schriftartButtons);
 		bVerfuegbarkeit.setFont(schriftartButtons);
 
 /*		bKundenverwaltung.setBounds(50, 59, 250, 100);
 		bFahrzeugverwaltung.setBounds(50, 218, 250, 100);
 		bVerfuegbarkeit.setBounds(50, 327, 250, 100);*/
-		bKundenverwaltung.setPreferredSize(new Dimension(100, 100));
-		bFahrzeugverwaltung.setPreferredSize(new Dimension(100, 100));
+		bCustomerManagement.setPreferredSize(new Dimension(100, 100));
+		bCarManagement.setPreferredSize(new Dimension(100, 100));
 		bVerfuegbarkeit.setPreferredSize(new Dimension(100, 100));
 
 
 		// Linkes ButtonPanel
 
 		buttonPanelMLinks.add(Box.createVerticalGlue());
-		buttonPanelMLinks.add(bKundenverwaltung);
+		buttonPanelMLinks.add(bCustomerManagement);
 		buttonPanelMLinks.add(Box.createVerticalGlue());
-		buttonPanelMLinks.add(bFahrzeugverwaltung);
+		buttonPanelMLinks.add(bCarManagement);
 		buttonPanelMLinks.add(Box.createVerticalGlue());
 		buttonPanelMLinks.add(bVerfuegbarkeit);
 		buttonPanelMLinks.add(Box.createVerticalGlue());
@@ -151,62 +148,12 @@ public class MainWindow extends JFrame {
 		panelMainMenue.add(footerPanel, BorderLayout.SOUTH);
 
 
-									// <<<<<< Kundenverwaltung >>>>>>>
-/*
-
-		// Content-Panel vom KundenMenue
-		panelKundenverwaltungMenue.setLayout(new BorderLayout());
-
-		//headerKundenMenue
-		textHeaderKundenVerwaltung.setHorizontalAlignment(JLabel.CENTER);
-		textHeaderKundenVerwaltung.setVerticalAlignment(JLabel.CENTER);
-		textHeaderKundenVerwaltung.setFont(schriftartHeader); // legt die Schriftart fest.
-		headerPanelK.setBackground(Color.GRAY);
-		headerPanelK.setOpaque(true);
-		headerPanelK.add(textHeaderKundenVerwaltung);
-		panelKundenverwaltungMenue.add(headerPanelK, BorderLayout.NORTH);
-
-*/
-
-									// <<<<<< Autoverwaltung >>>>>>>
-
-		// Content-Panel vom AutoverwaltungMenue
-		panelAutoverwaltungMenue.setLayout(new BorderLayout());
-
-		// headerAutoMenue
-		textHeaderFahrzeugVerwaltung.setHorizontalAlignment(JLabel.CENTER);
-		textHeaderFahrzeugVerwaltung.setVerticalAlignment(JLabel.CENTER);
-		textHeaderFahrzeugVerwaltung.setFont(schriftartHeader); // legt die Schriftart fest.
-		headerPanelA.setBackground(Color.GRAY);
-		headerPanelA.setOpaque(true);
-		headerPanelA.add(textHeaderFahrzeugVerwaltung);
-		panelAutoverwaltungMenue.add(headerPanelA, BorderLayout.NORTH);
-
-
-									// <<<<<< Mietverwaltung >>>>>>>
-
-		// Swing Timer in Action - war ein Versuch, kann ignoriert werden.
-		// final int labelwidth = 800;
-		// final AtomicInteger labelPadding = new AtomicInteger();
-		// Timer timer = new Timer(20, new ActionListener() {
-		// @Override
-		// public void actionPerformed(ActionEvent e) {
-		// endText.setBorder(new EmptyBorder(0, 0, 0, labelPadding.getAndIncrement()-
-		// labelwidth));
-		// }
-		// });
-		// timer.start();
-
 		/*
 		  Logical Part
 		 */
 
 		// Lambda Version für Button-Funktionalität.
-		bKundenverwaltung.addActionListener(e -> {
-
-/*			kundenverwaltung.open(); <<<<<<<< Bleibt vorerst deaktiviert.*/
-			//testfensterWin.open();
-
+		bCustomerManagement.addActionListener(e -> {
 			/*
 			  Sobald der Btn in Action ist, wird panelMainMenue entfernt & panelKundenverwaltungMenue initialisiert.
 			 */
@@ -217,10 +164,10 @@ public class MainWindow extends JFrame {
 			repaint();
 		});
 
-		bFahrzeugverwaltung.addActionListener(e -> {
+		bCarManagement.addActionListener(e -> {
 			remove(panelMainMenue);
-			add(panelAutoverwaltungMenue);
 			panelAutoverwaltungMenue.add(footerPanel, BorderLayout.SOUTH);
+			add(panelAutoverwaltungMenue);
 			revalidate();
 			repaint();
 		});
@@ -231,24 +178,4 @@ public class MainWindow extends JFrame {
 		add(panelMainMenue);
 		setVisible(true); // muss hinter allen adds gesetzt werden, ansonsten treten Probleme auf.
 	}
-
-	/*
-	  Komplett ersetzt durch Lambdas - steht hier nurnoch für bessere
-	  Nachvollziehbarkeit. Lambda-Version weiter oben.
-	 */
-	// private class DerHandler implements ActionListener {
-	//
-	// @Override
-	// public void actionPerformed(ActionEvent event) {
-	// if (event.getSource() == bFahrzeugverwaltung) {
-	// // null positioniert die Meldung in der Mitte
-	// // danach folgt der Ausgabe-String
-	// JOptionPane.showMessageDialog(null, "Willkommen in der Fahrzeugverwaltung");
-	// } else if (event.getSource() == bKundenverwaltung) {
-	// JOptionPane.showMessageDialog(null, "Willkommen in der Kundenverwaltung");
-	// } else if (event.getSource() == bVerfuegbarkeit) {
-	// JOptionPane.showMessageDialog(null, "Willkommen im Verfügbarkeits Check");
-	// }
-	// }
-	// }
 }

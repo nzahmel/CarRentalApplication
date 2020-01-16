@@ -3,4 +3,5 @@
 .project
 .idea/
 *.iml
+.classpath
 /out/

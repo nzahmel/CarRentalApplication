@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package system;
+package de.thb.fbw.se.gui;
+
 
 /**
  *
  * @author Nico Zahmel <Enjoy the flight>
  *
  */
-public class Main {
+public class Gui {
 
 
     public static String wichtigeInformation = "Willkommen bei der Verwaltung";
@@ -19,6 +20,7 @@ public class Main {
  * @param args Test Description
  */
     public static void main(String[] args) {
-        new MainWindow();
+         new CarRentalMainWindow();
+
     }
 }

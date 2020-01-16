@@ -1,25 +1,23 @@
-package system;
+package de.thb.fbw.se.gui;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class Testfenster extends JPanel
+public class CustomerManagement extends JPanel
 {
-
-    JPanel panelKundenverwaltungMenue  = new JPanel(); // Erstellung des KDVW Menues
-    JPanel headerPanelK = new JPanel(); // für das KundenMenue
+    JPanel headerPanelK = new JPanel(); // für den Header vom KundenMenue
     JLabel textHeaderKundenVerwaltung = new JLabel("Kundenverwaltung");
 
     // Die Liste im Center
+    JList list;
     JPanel linksPanel = new JPanel();
     String[] strSender = {"Auto 1", "Auto2", "Auto3", "Auto4", "Auto5", "Auto6", "Auto7", "Auto8"
             , "Auto2", "Auto3", "Auto4", "Auto5", "Auto6", "Auto7", "Auto8"
             , "Auto2", "Auto3", "Auto4", "Auto5", "Auto6", "Auto7", "Auto8"
             , "Auto2", "Auto3", "Auto4", "Auto5", "Auto6", "Auto7", "Auto8"
             , "Auto2", "Auto3", "Auto4", "Auto5", "Auto6", "Auto7", "Auto8"
-
     };
-    JList list = new JList(strSender);
+
     // -------
     // EAST bekommt ein Panel mit eigenem BorderLayout
     JPanel rechtsPanel = new JPanel();
@@ -32,23 +30,7 @@ public class Testfenster extends JPanel
     JButton bearbeitenButton = new JButton("Bearbeiten");
     JButton entferneButton = new JButton("Löschen");
 
-    JPanel footerPanel = new JPanel();  // für alle Menues
-    JLabel textFooter = new JLabel(
-            "Created by: Nico Zahmel, Christopher Alb, " + "Wilhelm Wöhlte, Mirko Reefschläger, Torben Hammes");
-
-
-
-    public Testfenster(){
-
-        /*
-         * Initialisierung & Anpassung JFrame & Title
-         */
-        //setTitle("Car Rental System for S.E. at THB");
-        //setSize(1024, 768);
-        //setLocationRelativeTo(null); // zentriert das Fenster in die Mitte,
-        // muss nach pack() oder setSize ausgefuehrt werden!
-        //setResizable(false);
-        //setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    public CustomerManagement(){
 
         // Definition der Schriftart für den Header
         Font schriftartHeader = new Font("Serif", Font.PLAIN + Font.ITALIC, 40);
@@ -57,12 +39,10 @@ public class Testfenster extends JPanel
         // Schriftart & Größe vom PanelLinks (Liste/Tabelle)
         Font schriftArtListe= new Font("Arial", Font.PLAIN, 20);
 
-
-
         // DESIGN! //
 
         // panelKundenverwaltungMenue Design
-        panelKundenverwaltungMenue.setLayout(new BorderLayout());
+        setLayout(new BorderLayout());
 
         //headerKundenMenue
         textHeaderKundenVerwaltung.setHorizontalAlignment(JLabel.CENTER);
@@ -73,6 +53,7 @@ public class Testfenster extends JPanel
 
         // Liste Links
         linksPanel.setLayout(new BorderLayout());
+        list = new JList(strSender);
         list.setFont(schriftArtListe);
 
         // rechtsPanel
@@ -90,14 +71,6 @@ public class Testfenster extends JPanel
         zurueckButton.setPreferredSize(new Dimension(90, 50));
 
 
-        // Footer
-        // <<<< Design + Adds Footer General >>>>
-        // Definition der Schriftart Footer
-        Font schriftartFooter = new Font("Serif", Font.PLAIN + Font.ITALIC, 19);
-        textFooter.setFont(schriftartFooter); // legt die Schriftart fest.
-        footerPanel.setBackground(Color.RED);
-        // ENDE <<<< Design Footer General >>>> ENDE
-
         // ADDS
         headerPanelK.add(textHeaderKundenVerwaltung);
 
@@ -112,30 +85,10 @@ public class Testfenster extends JPanel
         rechtsPanel.add(buttonPanel, BorderLayout.NORTH);
         rechtsPanel.add(zurueckButton, BorderLayout.SOUTH);
 
-        footerPanel.add(textFooter); // fügt das Text-Label unten hinzu.
 
-        panelKundenverwaltungMenue.add(headerPanelK, BorderLayout.NORTH);
-        panelKundenverwaltungMenue.add(linksPanel, BorderLayout.CENTER);
-        panelKundenverwaltungMenue.add(rechtsPanel, BorderLayout.EAST);
-        panelKundenverwaltungMenue.add(footerPanel, BorderLayout.SOUTH);
 
-        add(panelKundenverwaltungMenue);
-        revalidate();
-        repaint();
-        setVisible(true);
+        add(headerPanelK, BorderLayout.NORTH);
+        add(linksPanel, BorderLayout.CENTER);
+        add(rechtsPanel, BorderLayout.EAST);
     }
-
-/*    public static void main(String[] args) {
-        new Testfenster();
-
-    }*/
-
-/*    public void open(){
-
-        //remove(panelMainMenue);
-        add(panelKundenverwaltungMenue);
-        revalidate();
-        repaint();
-    }*/
-
 }
