@@ -21,9 +21,11 @@ import javax.swing.border.Border;
 public class CarRentalMainWindow extends JFrame {
 	// Variablendeklaration
 
-	JPanel panelMainMenue = new JPanel();	// Erstellung der Arbeitsflaeche des Hauptmenue-Fensters
-	JPanel panelKundenverwaltungMenue  = new CustomerManagement(); //new JPanel(); // Erstellung des KDVW Menues
-	JPanel panelAutoverwaltungMenue = new CarManagement();	// Erstellung des AUVW Menues
+	public static JPanel panelMainMenue = new JPanel();	// Erstellung der Arbeitsflaeche des Hauptmenue-Fensters
+	public static JPanel panelKundenverwaltungMenue  = new CustomerManagement(); //new JPanel(); // Erstellung des KDVW Menues
+	public static JPanel panelAutoverwaltungMenue = new CarManagement();	// Erstellung des AUVW Menues
+	public static CardLayout cl = new CardLayout();
+	public static JPanel containerPanel = new JPanel();
 
 	JPanel headerPanelM = new JPanel(); // für das MainMenue
 	JPanel buttonPanelM = new JPanel(); // für das MainMenue
@@ -45,16 +47,8 @@ public class CarRentalMainWindow extends JFrame {
 	// Schriftart & Größe der Buttons vom MainWindow.
 	Font schriftartButtons = new Font("Arial", Font.PLAIN, 20);
 
-
-
-/*	KundenverwaltungWindow kundenverwaltung = new KundenverwaltungWindow(this); */
-	// >>> Übergabe des Objekts an die Klasse vorerst deaktiviert, bis zur Reaktivierung.
-	//Testfenster testfensterWin = new Testfenster(this);
-
 	// KONSTRUKTOR!
 	public CarRentalMainWindow() {
-
-
 		/*
 		 * Initialisierung & Anpassung JFrame & Title
 		 */
@@ -65,13 +59,11 @@ public class CarRentalMainWindow extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		// <<<< Design + Adds Footer General >>>>
-		// Definition der Schriftart Footer
-		Font schriftartFooter = new Font("Serif", Font.PLAIN + Font.ITALIC, 20);
-		textFooter.setFont(schriftartFooter); // legt die Schriftart fest.
-		// Das Zentrum des Geschehens - fügt den Text hinzu & platziert ihn im footerPanel
-		footerPanel.add(textFooter); // fügt das Text-Label unten hinzu.
-		footerPanel.setBackground(Color.RED);
+		/*
+		* Dies ist der Hauptcontainer, in dem alle Menues in Form von Karten (einzelnen Panels) angelegt werden.
+		*/
+		containerPanel.setLayout(cl);
+
 
 		/////////////////////////////////////////////////////////////////////////////////////
 
@@ -105,10 +97,6 @@ public class CarRentalMainWindow extends JFrame {
 		bCarManagement.setFont(schriftartButtons);
 		bCustomerManagement.setFont(schriftartButtons);
 		bVerfuegbarkeit.setFont(schriftartButtons);
-
-/*		bKundenverwaltung.setBounds(50, 59, 250, 100);
-		bFahrzeugverwaltung.setBounds(50, 218, 250, 100);
-		bVerfuegbarkeit.setBounds(50, 327, 250, 100);*/
 		bCustomerManagement.setPreferredSize(new Dimension(100, 100));
 		bCarManagement.setPreferredSize(new Dimension(100, 100));
 		bVerfuegbarkeit.setPreferredSize(new Dimension(100, 100));
@@ -147,6 +135,10 @@ public class CarRentalMainWindow extends JFrame {
 		panelMainMenue.add(buttonPanelM, BorderLayout.CENTER);
 		panelMainMenue.add(footerPanel, BorderLayout.SOUTH);
 
+		containerPanel.add(panelMainMenue, "RNTLMAIN");
+		cl.show(containerPanel, "RNTLMAIN");
+		containerPanel.add(panelKundenverwaltungMenue, "CSTMMNGM");
+		containerPanel.add(panelAutoverwaltungMenue, "CRMNGM");
 
 		/*
 		  Logical Part
@@ -157,25 +149,25 @@ public class CarRentalMainWindow extends JFrame {
 			/*
 			  Sobald der Btn in Action ist, wird panelMainMenue entfernt & panelKundenverwaltungMenue initialisiert.
 			 */
-			remove(panelMainMenue);
-			panelKundenverwaltungMenue.add(footerPanel, BorderLayout.SOUTH);
-			add(panelKundenverwaltungMenue);
-			revalidate();
-			repaint();
+			cl.show(containerPanel, "CSTMMNGM");
 		});
 
 		bCarManagement.addActionListener(e -> {
-			remove(panelMainMenue);
-			panelAutoverwaltungMenue.add(footerPanel, BorderLayout.SOUTH);
-			add(panelAutoverwaltungMenue);
-			revalidate();
-			repaint();
+			cl.show(containerPanel, "CRMNGM");
 		});
 		bVerfuegbarkeit.addActionListener(e -> {
 			//JOptionPane.showMessageDialog(null, "Willkommen im Verfügbarkeits Check!");
 		});
 
-		add(panelMainMenue);
+		// <<<< Design + Adds Footer General >>>>
+		// Definition der Schriftart Footer
+		Font schriftartFooter = new Font("Serif", Font.PLAIN + Font.ITALIC, 20);
+		textFooter.setFont(schriftartFooter); // legt die Schriftart fest.
+		// Das Zentrum des Geschehens - fügt den Text hinzu & platziert ihn im footerPanel
+		footerPanel.add(textFooter); // fügt das Text-Label unten hinzu.
+		footerPanel.setBackground(Color.RED);
+
+		add(containerPanel);
 		setVisible(true); // muss hinter allen adds gesetzt werden, ansonsten treten Probleme auf.
 	}
 }
