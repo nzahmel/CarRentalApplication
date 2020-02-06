@@ -13,7 +13,7 @@ public class CustomerManagement extends JPanel
 
     // Die Liste im Center
     JList list;
-    JPanel linksPanel = new JPanel();
+    JPanel linksPanel;
     String[] strSender = {"Auto 1", "Auto2", "Auto3", "Auto4", "Auto5", "Auto6", "Auto7", "Auto8"
             , "Auto2", "Auto3", "Auto4", "Auto5", "Auto6", "Auto7", "Auto8"
             , "Auto2", "Auto3", "Auto4", "Auto5", "Auto6", "Auto7", "Auto8"
@@ -55,9 +55,12 @@ public class CustomerManagement extends JPanel
         headerPanelK.setOpaque(true);
 
         // Liste Links
+        linksPanel = new JPanel();
         linksPanel.setLayout(new BorderLayout());
         list = new JList(strSender);
         list.setFont(schriftArtListe);
+        // PanelLinks + Liste zum Panel adden
+        linksPanel.add(new JScrollPane(list));
 
         // rechtsPanel
         rechtsPanel.setLayout(new BorderLayout());
@@ -82,9 +85,7 @@ public class CustomerManagement extends JPanel
         // ADDS
         headerPanelK.add(textHeaderKundenVerwaltung);
 
-        // PanelLinks + Liste
-        linksPanel.add(new JScrollPane(list));
-        //linksPanel.add(list, BorderLayout.CENTER);
+
 
         // Buttons rechts oben im buttonPanel: anlegen, bearbeiten, hinzufügen.
         buttonPanel.add(anlegeButton);

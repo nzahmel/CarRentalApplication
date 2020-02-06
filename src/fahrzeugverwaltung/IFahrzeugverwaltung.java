@@ -9,5 +9,9 @@ public interface IFahrzeugverwaltung {
 	
 	public void fLoeschen(int index);
 	
+	public void hinzufügenFahrzeugListener(IFahrzeugListener listener);
+	
+	public void löschenFahrzeugListener(IFahrzeugListener listener);
+	
 	
 }

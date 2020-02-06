@@ -11,6 +11,11 @@ public class CarManagement extends JPanel {
             "Created by: Nico Zahmel, Christopher Alb, " + "Wilhelm Wöhlte, Mirko Reefschläger, Torben Hammes");
 
     // Die Liste im Center
+    JTable fahrzeugtable = new JTable();
+    
+    
+    
+
     JList list;
     JPanel linksPanel = new JPanel();
     String[] strSender = {"Auto 1", "Auto2", "Auto3", "Auto4", "Auto5", "Auto6", "Auto7", "Auto8"
@@ -57,7 +62,10 @@ public class CarManagement extends JPanel {
         linksPanel.setLayout(new BorderLayout());
         list = new JList(strSender);
         list.setFont(schriftArtListe);
-
+        
+        // PanelLinks + Liste
+        linksPanel.add(new JScrollPane(fahrzeugtable));
+        
         // rechtsPanel
         rechtsPanel.setLayout(new BorderLayout());
         buttonPanel.setLayout(new GridLayout(3, 1));
@@ -81,9 +89,7 @@ public class CarManagement extends JPanel {
         // ADDS
         headerPanelA.add(textHeaderFahrzeugVerwaltung);
 
-        // PanelLinks + Liste
-        linksPanel.add(new JScrollPane(list));
-        //linksPanel.add(list, BorderLayout.CENTER);
+        
 
         // Buttons rechts oben im buttonPanel: anlegen, bearbeiten, hinzufügen.
         buttonPanel.add(anlegeButton);
