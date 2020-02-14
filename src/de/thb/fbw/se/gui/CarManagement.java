@@ -1,9 +1,20 @@
 package de.thb.fbw.se.gui;
 
 import javax.swing.*;
-import java.awt.*;
+import javax.swing.table.DefaultTableModel;
 
-public class CarManagement extends JPanel {
+import fahrzeugverwaltung.Fahrzeug;
+import fahrzeugverwaltung.Fahrzeugverwaltung;
+import fahrzeugverwaltung.IFahrzeugverwaltung;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Set;
+import java.util.UUID;
+import java.util.Vector;
+
+public class CarManagement extends JPanel implements ActionListener {
     JPanel headerPanelA = new JPanel(); // für den Header AutoMenue
     JLabel textHeaderFahrzeugVerwaltung = new JLabel("Autoverwaltung");
     JPanel footerPanel = new JPanel();  // für alle Menues
@@ -11,35 +22,27 @@ public class CarManagement extends JPanel {
             "Created by: Nico Zahmel, Christopher Alb, " + "Wilhelm Wöhlte, Mirko Reefschläger, Torben Hammes");
 
     // Die Liste im Center
-    JTable fahrzeugtable = new JTable();
+	 
+    //JTable flist;
     
+    private JTable table;
+    private DefaultTableModel model;
     
-    
-
-    JList list;
-    JPanel linksPanel = new JPanel();
-    String[] strSender = {"Auto 1", "Auto2", "Auto3", "Auto4", "Auto5", "Auto6", "Auto7", "Auto8"
-            , "Auto2", "Auto3", "Auto4", "Auto5", "Auto6", "Auto7", "Auto8"
-            , "Auto2", "Auto3", "Auto4", "Auto5", "Auto6", "Auto7", "Auto8"
-            , "Auto2", "Auto3", "Auto4", "Auto5", "Auto6", "Auto7", "Auto8"
-            , "Auto2", "Auto3", "Auto4", "Auto5", "Auto6", "Auto7", "Auto8"
-    };
-
-    // -------
-    // EAST bekommt ein Panel mit eigenem BorderLayout
-    JPanel rechtsPanel = new JPanel();
-    // Zurück-Button rechts unten
-    JButton zurueckButton = new JButton("Zurück");
-    // North vom rechtsPanel bekommt neues Panel mit Buttons: Anlegen, Bearbeiten, Löschen
-    JPanel buttonPanel = new JPanel();
-    // Buttons für das buttonPanel im rechtsPanel
-    JButton anlegeButton = new JButton("Anlegen");
-    JButton bearbeitenButton = new JButton("Bearbeiten");
-    JButton entferneButton = new JButton("Löschen");
-
-    public CarManagement(){
-
-        // Definition der Schriftart für den Header
+    public CarManagement(IFahrzeugverwaltung fahrzeugverwaltung) {
+       	
+    	 // -------
+        // EAST bekommt ein Panel mit eigenem BorderLayout
+        JPanel rechtsPanel = new JPanel();
+        // Zurück-Button rechts unten
+        JButton zurueckButton = new JButton("Zurück");
+        // North vom rechtsPanel bekommt neues Panel mit Buttons: Anlegen, Bearbeiten, Löschen
+        JPanel buttonPanel = new JPanel();
+        // Buttons für das buttonPanel im rechtsPanel
+        JButton anlegeButton = new JButton("Anlegen");
+        JButton bearbeitenButton = new JButton("Bearbeiten");
+        JButton entferneButton = new JButton("Löschen");
+        
+     // Definition der Schriftart für den Header
         Font schriftartHeader = new Font("Serif", Font.PLAIN + Font.ITALIC, 40);
         // Schriftart & Größe der Buttons vom MainWindow.
         Font schriftartButtons = new Font("Arial", Font.PLAIN, 20);
@@ -58,13 +61,34 @@ public class CarManagement extends JPanel {
         headerPanelA.setBackground(Color.GRAY);
         headerPanelA.setOpaque(true);
 
-        // Liste Links
+        // Table Links
+        JPanel linksPanel = new JPanel();
         linksPanel.setLayout(new BorderLayout());
-        list = new JList(strSender);
-        list.setFont(schriftArtListe);
+        
+        String[] COLUMN_TITLE = new String[] {"ID", "Fahrzeugkategorie", "Hersteller", "Modell", "Getriebe", "Kraftstoff",
+        		"Kilometerstand"};
+       
+        DefaultTableModel model = new DefaultTableModel(COLUMN_TITLE, 0){
+        			public boolean isCellEditable(int row, int column)
+        			{
+        				return true;
+        			}
+        		}
+        		;
+        
+        model.addRow(new Object[] {"1","PKW","BMW", "e46 3er", "manuell", "Benzin", "200"});
+        model.addRow(new Object[] {"2","PKW","Mercedes", "C36 AMG", "manuell", "Benzin", "1000"});
+        model.addRow(new Object[] {"3","PKW","Mazda", "mx 5", "manuell", "Diesel", "200"});
+        model.addRow(new Object[] {"4","PKW","Tesla", "Modell 3", "automatik", "Strom", "2500"});
+        JTable table = new JTable(model);
+       
+        
+        //flist = new JTable(new FahrzeugTable(fahrzeugverwaltung));
+        //flist = new JTable(data, COLUMN_TITLES);
+        //flist.setFont(schriftArtListe);
         
         // PanelLinks + Liste
-        linksPanel.add(new JScrollPane(fahrzeugtable));
+        linksPanel.add(new JScrollPane(table));
         
         // rechtsPanel
         rechtsPanel.setLayout(new BorderLayout());
@@ -84,8 +108,36 @@ public class CarManagement extends JPanel {
         zurueckButton.addActionListener( e -> {
             CarRentalMainWindow.cl.show(CarRentalMainWindow.containerPanel, "RNTLMAIN");
         });
-
-
+        anlegeButton.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				model.addRow(createDataVector());
+				
+			}
+		});
+       bearbeitenButton.addActionListener(new ActionListener() {
+		
+		public void actionPerformed(ActionEvent e) {
+			// get selected row index
+			JOptionPane.showMessageDialog(null,"Die Funktion steht zur Zeit nicht zur Verfügung");
+		
+		}
+		});
+       
+       entferneButton.addActionListener(new ActionListener() {
+				
+		public void actionPerformed(ActionEvent e) {
+			// get selected row index
+			try {
+			int SelectedRowIndex = table.getSelectedRow();
+			model.removeRow(SelectedRowIndex);
+			}catch(Exception ex)
+			{
+				JOptionPane.showMessageDialog(null,"Bitte wählen sie eine Zeile aus");
+			}
+		}
+	});
+       
         // ADDS
         headerPanelA.add(textHeaderFahrzeugVerwaltung);
 
@@ -111,5 +163,29 @@ public class CarManagement extends JPanel {
         add(linksPanel, BorderLayout.CENTER);
         add(rechtsPanel, BorderLayout.EAST);
         add(footerPanel, BorderLayout.SOUTH);
+        
+        
+        
+        
     }
-}
+    public static Vector createDataVector() {
+    	
+    	return null;
+    	
+    }
+    
+    
+	
+    
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	} 
+	  	
+     
+	
+	
+

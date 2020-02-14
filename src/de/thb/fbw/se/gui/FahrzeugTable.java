@@ -2,6 +2,9 @@ package de.thb.fbw.se.gui;
 
 import javax.swing.table.AbstractTableModel;
 
+
+import fahrzeugverwaltung.Fahrzeug;
+import fahrzeugverwaltung.Fahrzeugverwaltung;
 import fahrzeugverwaltung.IFahrzeugListener;
 import fahrzeugverwaltung.IFahrzeugverwaltung;
 
@@ -13,13 +16,16 @@ public class FahrzeugTable extends AbstractTableModel {
 	
 	public FahrzeugTable(IFahrzeugverwaltung fahrzeugverwaltung) {
 		this.fahrzeugverwaltung = fahrzeugverwaltung;
-		fahrzeugverwaltung.hinzufügenFahrzeugListener(new IFahrzeugListener() {
+		fahrzeugverwaltung.hinzufuegenFahrzeugListener(new IFahrzeugListener() {
+			
 			
 			public void fahrzeugChanged() {
 				fireTableStructureChanged();
 			}
 		});
+		
 	}
+	
 
 	@Override
 	public int getColumnCount() {
@@ -33,13 +39,35 @@ public class FahrzeugTable extends AbstractTableModel {
 		return 0;
 	}
 
-	@Override
-	public Object getValueAt(int arg0, int arg1) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public Object getValueAt(int row, int col) {
+		Object ret = null;
+		Fahrzeug fahrzeug = fahrzeugverwaltung.getFahrzeug(row);
+		switch (col) {
+			case 0:
+				ret = fahrzeug.getId();
+				break;
+			case 1:
+			default:
+				ret = fahrzeug.getFahrzeukategorie();
+				break;
+			case 2:
+				ret = fahrzeug.getHersteller();
+				break;
+			case 3:
+				ret = fahrzeug.getModell();
+				break;
+			case 4:
+				ret = fahrzeug.getGetriebe();
+				break;
+			case 5:
+				ret = fahrzeug.getKraftstoff();
+				break;
+			case 6:
+				ret = fahrzeug.getKilometerstand();
+		}
+		return ret;
 	}
-	public String getColumnName(int column) {
-		System.out.println("Column name " + column);
-		return COLUMN_TITLES[column];
-	}
+	
+	
 }

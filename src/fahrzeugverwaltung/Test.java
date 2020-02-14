@@ -52,19 +52,19 @@ public class Test {
 		
 		drei.fListeAnzeigen();
 		System.out.println("Fahrzeug hinzugefügt mit leerem Construktor, aber mit Inhalt");
-		drei.fHinzufügen(eins);
+		drei.fHinzufuegen(eins);
 		drei.fListeAnzeigen();
 		System.out.println("----");
 		System.out.println("Zweites Fahrzeug hinzugefügt");
-		drei.fHinzufügen(zwei);
+		drei.fHinzufuegen(zwei);
 		drei.fListeAnzeigen();
 		System.out.println("-----");
 		System.out.println("Drittes Fahrzeug hinzugefügt mit leerem Construktor");
-		drei.fHinzufügen(vier);
+		drei.fHinzufuegen(vier);
 		drei.fListeAnzeigen();
 		System.out.println("-----");
 		System.out.println("4tes Fahrzeug hinzugefügt mit definiertem Construktor");
-		drei.fHinzufügen(fünf);
+		drei.fHinzufuegen(fünf);
 		drei.fListeAnzeigen();
 		System.out.println("------");
 		System.out.println(sechs);
@@ -81,7 +81,7 @@ public class Test {
 		drei.fListeAnzeigen();
 		*/
 		System.out.println(drei.getFahrzeug(1));
-		System.out.println(drei.fbearbeiten(1));
+		System.out.println(drei.fBearbeiten(1));
 		
 	}
 }

@@ -19,7 +19,7 @@ public class Fahrzeugverwaltung implements IFahrzeugverwaltung{
 		listeners = new HashSet<>();
 	}
 
-	public void fHinzufügen(Fahrzeug fahrzeug) {
+	public void fHinzufuegen(Fahrzeug fahrzeug) {
 		this.fahrzeug.put(fahrzeug.getId(), fahrzeug);
 		fahrzeuglist.add(fahrzeug);
 		for (IFahrzeugListener listener : listeners)
@@ -59,7 +59,7 @@ public class Fahrzeugverwaltung implements IFahrzeugverwaltung{
 		
 		
 	}
-	public Fahrzeug fbearbeiten(int index) {
+	public Fahrzeug fBearbeiten(int index) {
 		return fahrzeuglist.get(index);
 		
 		
@@ -81,11 +81,11 @@ public class Fahrzeugverwaltung implements IFahrzeugverwaltung{
 	public void fGroeße() {
 		System.out.println(fahrzeuglist.size());
 	}
-	public void hinzufügenFahrzeugListener(IFahrzeugListener listener) {
+	public void hinzufuegenFahrzeugListener(IFahrzeugListener listener) {
 		listeners.add(listener);
 	}
 	
-	public void löschenFahrzeugListener(IFahrzeugListener listener) {
+	public void loeschenFahrzeugListener(IFahrzeugListener listener) {
 		listeners.remove(listener);
 	}
 }	
