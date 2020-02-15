@@ -33,7 +33,10 @@ public class CustomerManagement extends JPanel
     JButton bearbeitenButton = new JButton("Bearbeiten");
     JButton entferneButton = new JButton("Löschen");
 
-    public CustomerManagement(){
+    CarRentalMainWindow mw;
+
+    public CustomerManagement(CarRentalMainWindow mainWindow){
+        mw = mainWindow;
 
         // Definition der Schriftart für den Header
         Font schriftartHeader = new Font("Serif", Font.PLAIN + Font.ITALIC, 40);
@@ -75,7 +78,7 @@ public class CustomerManagement extends JPanel
 
         // Lambda Ausdruck für Back Funktionalität
         zurueckButton.addActionListener( e -> {
-            CarRentalMainWindow.cl.show(CarRentalMainWindow.containerPanel, "RNTLMAIN");
+            mw.cl.show(mw.containerPanel, "RNTLMAIN");
         });
 
 

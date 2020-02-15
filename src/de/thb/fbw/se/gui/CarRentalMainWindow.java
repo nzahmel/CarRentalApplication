@@ -21,11 +21,11 @@ import javax.swing.border.Border;
 public class CarRentalMainWindow extends JFrame {
 	// Variablendeklaration
 
-	public static JPanel panelMainMenue = new JPanel();	// Erstellung der Arbeitsflaeche des Hauptmenue-Fensters
-	public static JPanel panelKundenverwaltungMenue  = new CustomerManagement(); //new JPanel(); // Erstellung des KDVW Menues
-	public static JPanel panelAutoverwaltungMenue = new CarManagement();	// Erstellung des AUVW Menues
-	public static CardLayout cl = new CardLayout();
-	public static JPanel containerPanel = new JPanel();
+	JPanel panelMainMenue = new JPanel();	// Erstellung der Arbeitsflaeche des Hauptmenue-Fensters
+	JPanel panelKundenverwaltungMenue  = new CustomerManagement(this); //new JPanel(); // Erstellung des KDVW Menues
+	JPanel panelAutoverwaltungMenue = new CarManagement(this);	// Erstellung des AUVW Menues
+	CardLayout cl = new CardLayout();
+	JPanel containerPanel = new JPanel();
 
 	JPanel headerPanelM = new JPanel(); // für das MainMenue
 	JPanel buttonPanelM = new JPanel(); // für das MainMenue
