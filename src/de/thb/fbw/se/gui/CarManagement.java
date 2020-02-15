@@ -82,6 +82,9 @@ public class CarManagement extends JPanel implements ActionListener {
         model.addRow(new Object[] {"2","PKW","Mercedes", "C36 AMG", "manuell", "Benzin", "1000"});
         model.addRow(new Object[] {"3","PKW","Mazda", "mx 5", "manuell", "Diesel", "200"});
         model.addRow(new Object[] {"4","PKW","Tesla", "Modell 3", "automatik", "Strom", "2500"});
+        Fahrzeug f = new Fahrzeug();
+        f.setFahrzeukategorie("beispiel");
+        System.out.println(f);
         JTable table = new JTable(model);
 
 

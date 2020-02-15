@@ -28,10 +28,11 @@ public class Availability extends JPanel
     JButton zurueckButton = new JButton("Zurück");
     // North vom rechtsPanel bekommt neues Panel mit Buttons: Anlegen, Bearbeiten, Löschen
     JPanel buttonPanel = new JPanel();
-    
+    CarRentalMainWindow mw;
 
-    public Availability(){
+    public Availability(CarRentalMainWindow mainWindow){
 
+        mw = mainWindow;
         // Definition der Schriftart für den Header
         Font schriftartHeader = new Font("Serif", Font.PLAIN + Font.ITALIC, 40);
         // Schriftart & Größe der Buttons vom MainWindow.
@@ -71,7 +72,7 @@ public class Availability extends JPanel
 
         // Lambda Ausdruck für Back Funktionalität
         zurueckButton.addActionListener( e -> {
-            CarRentalMainWindow.cl.show(CarRentalMainWindow.containerPanel, "RNTLMAIN");
+            mw.cl.show(mw.containerPanel, "RNTLMAIN");
         });
 
 

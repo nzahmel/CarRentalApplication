@@ -1,5 +1,6 @@
 package fahrzeugverwaltung;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 
@@ -100,9 +101,20 @@ public class Fahrzeug {
 	public void setKilometerstand(int kilometerstand) {
 		this.kilometerstand = kilometerstand;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "Fahrzeug{" +
+				"Id='" + Id + '\'' +
+				", hersteller='" + hersteller + '\'' +
+				", modell='" + modell + '\'' +
+				", getriebe='" + getriebe + '\'' +
+				", kraftstoff='" + kraftstoff + '\'' +
+				", fahrzeugkategorie='" + fahrzeugkategorie + '\'' +
+				", kilometerstand=" + kilometerstand +
+				'}';
+	}
+
 	public int hashCode() {
 		return Id.hashCode();
 	}
