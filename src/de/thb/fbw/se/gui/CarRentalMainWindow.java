@@ -25,16 +25,12 @@ import fahrzeugverwaltung.IFahrzeugverwaltung;
 public class CarRentalMainWindow extends JFrame {
 	// Variablendeklaration
 
-	IFahrzeugverwaltung fv = new Fahrzeugverwaltung();
 	JPanel panelMainMenue = new JPanel();	// Erstellung der Arbeitsflaeche des Hauptmenue-Fensters
-	JPanel panelKundenverwaltungMenue  = new CustomerManagement(this); //new JPanel(); // Erstellung des KDVW Menues
-	JPanel panelAutoverwaltungMenue = new CarManagement(fv, this);	// Erstellung des AUVW Menues
+	JPanel panelKundenverwaltungMenue  = new CustomerManagement(); //new JPanel(); // Erstellung des KDVW Menues
+	JPanel panelAutoverwaltungMenue = new CarManagement(fv);	// Erstellung des AUVW Menues
 	CardLayout cl = new CardLayout();
 	JPanel containerPanel = new JPanel();
 
-	public void run() {
-		fv.fHinzufuegen(new Fahrzeug("", "", "", "le", "", 300));
-	}
 
 	JPanel headerPanelM = new JPanel(); // für das MainMenue
 	JPanel buttonPanelM = new JPanel(); // für das MainMenue

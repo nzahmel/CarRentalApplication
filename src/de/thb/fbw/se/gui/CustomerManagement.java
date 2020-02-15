@@ -4,6 +4,9 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Vector;
 
 public class CustomerManagement extends JPanel
 {
@@ -14,10 +17,9 @@ public class CustomerManagement extends JPanel
             "Created by: Nico Zahmel, Christopher Alb, " + "Wilhelm Wöhlte, Mirko Reefschläger, Torben Hammes");
 
     // Die Liste im Center
-    private JTable table;
-    private DefaultTableModel model;
-    
-    
+    private JTable cusTable;
+    private DefaultTableModel cusModel;
+
 
     // -------
     // EAST bekommt ein Panel mit eigenem BorderLayout
@@ -55,14 +57,31 @@ public class CustomerManagement extends JPanel
         headerPanelK.setBackground(Color.GRAY);
         headerPanelK.setOpaque(true);
 
-        // Liste Links
-        /*linksPanel = new JPanel();
+
+        // Table Links
+        JPanel linksPanel = new JPanel();
         linksPanel.setLayout(new BorderLayout());
-        list = new JList(strSender);
-        list.setFont(schriftArtListe);
-        // PanelLinks + Liste zum Panel adden
-        linksPanel.add(new JScrollPane(list));
-		*/
+
+        String[] COLUMN_TITLE = new String[] {"Kundennummer", "Vorname", "Name", "Geburtsdatum", "Wohnort", "PLZ",
+        		"Straße"};
+
+        DefaultTableModel cusModel = new DefaultTableModel(COLUMN_TITLE, 0){
+        			public boolean isCellEditable(int row, int column)
+        			{
+        				return true;
+        			}
+        		};
+
+        cusModel.addRow(new Object[] {"0001","Christin", "Meier", "27.03.1989", "Brandenburg", "14770","Prühlitzer Straße 8"});
+        cusModel.addRow(new Object[] {"0002","Mike","Müller", "22.07.1978", "Berlin", "10115", "Torstraße 5"});
+        cusModel.addRow(new Object[] {"0003","Alex","Schulz", "12.01.1991", "Brandenburg", "14772", "Wilhelmsdorfer Straße 12"});
+        cusModel.addRow(new Object[] {"0004","Luisa","Recknagel", "17.12.1995", "Potsdam", "14467", "Steinbeck Straße 3"});
+        JTable cusTable = new JTable(cusModel);
+
+        //cusTable.setFont(schriftArtListe);
+        // PanelLinks + Table
+        linksPanel.add(new JScrollPane(cusTable));
+
         // rechtsPanel
         rechtsPanel.setLayout(new BorderLayout());
         buttonPanel.setLayout(new GridLayout(3, 1));
@@ -81,6 +100,35 @@ public class CustomerManagement extends JPanel
         zurueckButton.addActionListener( e -> {
             mw.cl.show(mw.containerPanel, "RNTLMAIN");
         });
+        anlegeButton.addActionListener(new ActionListener() {
+
+			public void actionPerformed(ActionEvent e) {
+				cusModel.addRow(createDataVector());
+
+			}
+		});
+       bearbeitenButton.addActionListener(new ActionListener() {
+
+		public void actionPerformed(ActionEvent e) {
+			// get selected row index
+			JOptionPane.showMessageDialog(null,"Die Funktion steht zur Zeit nicht zur Verfügung!");
+
+		}
+		});
+
+       entferneButton.addActionListener(new ActionListener() {
+
+		public void actionPerformed(ActionEvent e) {
+			// get selected row index
+			try {
+			int SelectedRowIndex = cusTable.getSelectedRow();
+			cusModel.removeRow(SelectedRowIndex);
+			}catch(Exception ex)
+			{
+				JOptionPane.showMessageDialog(null,"Bitte wählen sie eine Zeile aus");
+			}
+		}
+       	});
 
 
         // ADDS
@@ -105,8 +153,13 @@ public class CustomerManagement extends JPanel
         footerPanel.add(textFooter);
 
         add(headerPanelK, BorderLayout.NORTH);
-        //add(linksPanel, BorderLayout.CENTER);
+        add(linksPanel, BorderLayout.CENTER);
         add(rechtsPanel, BorderLayout.EAST);
         add(footerPanel, BorderLayout.SOUTH);
     }
+    public static Vector createDataVector() {
+    	return null;
+
+    }
+
 }

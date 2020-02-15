@@ -3,9 +3,7 @@ package de.thb.fbw.se.gui;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-import fahrzeugverwaltung.Fahrzeug;
-import fahrzeugverwaltung.Fahrzeugverwaltung;
-import fahrzeugverwaltung.IFahrzeugverwaltung;
+
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -25,11 +23,12 @@ public class CarManagement extends JPanel implements ActionListener {
 
     //JTable flist;
 
-    private JTable table;
-    private DefaultTableModel model;
     CarRentalMainWindow mw;
+    private JTable carTable;
+    private DefaultTableModel carModel;
 
-    public CarManagement(IFahrzeugverwaltung fahrzeugverwaltung, CarRentalMainWindow mainWindow) {
+
+    public CarManagement(CarRentalMainWindow mainWindow) {
        	mw = mainWindow;
     	 // -------
         // EAST bekommt ein Panel mit eigenem BorderLayout
@@ -69,32 +68,28 @@ public class CarManagement extends JPanel implements ActionListener {
 
         String[] COLUMN_TITLE = new String[] {"ID", "Fahrzeugkategorie", "Hersteller", "Modell", "Getriebe", "Kraftstoff",
         		"Kilometerstand"};
-
-        DefaultTableModel model = new DefaultTableModel(COLUMN_TITLE, 0){
+       
+        DefaultTableModel carModel = new DefaultTableModel(COLUMN_TITLE, 0){
         			public boolean isCellEditable(int row, int column)
         			{
         				return true;
         			}
-        		}
-        		;
+        		};
 
-        model.addRow(new Object[] {"1","PKW","BMW", "e46 3er", "manuell", "Benzin", "200"});
-        model.addRow(new Object[] {"2","PKW","Mercedes", "C36 AMG", "manuell", "Benzin", "1000"});
-        model.addRow(new Object[] {"3","PKW","Mazda", "mx 5", "manuell", "Diesel", "200"});
-        model.addRow(new Object[] {"4","PKW","Tesla", "Modell 3", "automatik", "Strom", "2500"});
-        Fahrzeug f = new Fahrzeug();
-        f.setFahrzeukategorie("beispiel");
-        System.out.println(f);
-        JTable table = new JTable(model);
-
-
+        carModel.addRow(new Object[] {"1","PKW","BMW", "e46 3er", "manuell", "Benzin", "200"});
+        carModel.addRow(new Object[] {"2","PKW","Mercedes", "C36 AMG", "manuell", "Benzin", "1000"});
+        carModel.addRow(new Object[] {"3","PKW","Mazda", "mx 5", "manuell", "Diesel", "200"});
+        carModel.addRow(new Object[] {"4","PKW","Tesla", "Modell 3", "automatik", "Strom", "2500"});
+        JTable carTable = new JTable(carModel);
+       
+        
         //flist = new JTable(new FahrzeugTable(fahrzeugverwaltung));
         //flist = new JTable(data, COLUMN_TITLES);
         //flist.setFont(schriftArtListe);
 
         // PanelLinks + Liste
-        linksPanel.add(new JScrollPane(table));
-
+        linksPanel.add(new JScrollPane(carTable));
+        
         // rechtsPanel
         rechtsPanel.setLayout(new BorderLayout());
         buttonPanel.setLayout(new GridLayout(3, 1));
@@ -116,16 +111,16 @@ public class CarManagement extends JPanel implements ActionListener {
         anlegeButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				model.addRow(createDataVector());
-
+				carModel.addRow(createDataVector());
+				
 			}
 		});
        bearbeitenButton.addActionListener(new ActionListener() {
 
 		public void actionPerformed(ActionEvent e) {
 			// get selected row index
-			JOptionPane.showMessageDialog(null,"Die Funktion steht zur Zeit nicht zur Verfügung");
-
+			JOptionPane.showMessageDialog(null,"Die Funktion steht zur Zeit nicht zur Verfügung!");
+		
 		}
 		});
 
@@ -134,11 +129,11 @@ public class CarManagement extends JPanel implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			// get selected row index
 			try {
-			int SelectedRowIndex = table.getSelectedRow();
-			model.removeRow(SelectedRowIndex);
+			int SelectedRowIndex = carTable.getSelectedRow();
+			carModel.removeRow(SelectedRowIndex);
 			}catch(Exception ex)
 			{
-				JOptionPane.showMessageDialog(null,"Bitte wählen sie eine Zeile aus");
+				JOptionPane.showMessageDialog(null,"Bitte wählen sie eine Zeile aus.");
 			}
 		}
 	});
@@ -168,13 +163,12 @@ public class CarManagement extends JPanel implements ActionListener {
         add(linksPanel, BorderLayout.CENTER);
         add(rechtsPanel, BorderLayout.EAST);
         add(footerPanel, BorderLayout.SOUTH);
-
-
-
-
+        
     }
-    public static Vector createDataVector() {
 
+
+
+	public static Vector createDataVector() {
     	return null;
 
     }
