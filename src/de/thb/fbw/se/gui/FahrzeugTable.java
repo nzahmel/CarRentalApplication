@@ -3,10 +3,9 @@ package de.thb.fbw.se.gui;
 import javax.swing.table.AbstractTableModel;
 
 
-import fahrzeugverwaltung.Fahrzeug;
-import fahrzeugverwaltung.Fahrzeugverwaltung;
-import fahrzeugverwaltung.IFahrzeugListener;
-import fahrzeugverwaltung.IFahrzeugverwaltung;
+import de.thb.fbw.se.fahrzeugverwaltung.Fahrzeug;
+import de.thb.fbw.se.fahrzeugverwaltung.IFahrzeugListener;
+import de.thb.fbw.se.fahrzeugverwaltung.IFahrzeugverwaltung;
 
 public class FahrzeugTable extends AbstractTableModel {
 	private static String[] COLUMN_TITLES = new String[] { "ID", "Fahrzeugkategorie", "Hersteller", "Modell", "Getriebe"

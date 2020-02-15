@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
-// // TODO: 15.02.2020 weitere Footer deelten
+// // TODO: 15.02.2020 Main Header Panel Redundanz aufheben!
 
 public class CustomerManagement extends JPanel
 {

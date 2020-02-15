@@ -3,16 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-// TODO: 09.01.2020 Package-Namen anpassen.
+
 package de.thb.fbw.se.gui;
 
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.Border;
-
-import fahrzeugverwaltung.Fahrzeug;
-import fahrzeugverwaltung.Fahrzeugverwaltung;
-import fahrzeugverwaltung.IFahrzeugverwaltung;
 
 /**
  *

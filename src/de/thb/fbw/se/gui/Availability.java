@@ -148,7 +148,6 @@ public class Availability extends JPanel
     }
     public static Vector createDataVector() {
         return null;
-
     }
 
 }
