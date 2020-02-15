@@ -26,8 +26,8 @@ public class CarRentalMainWindow extends JFrame {
 	// Variablendeklaration
 
 	JPanel panelMainMenue = new JPanel();	// Erstellung der Arbeitsflaeche des Hauptmenue-Fensters
-	JPanel panelKundenverwaltungMenue  = new CustomerManagement(); //new JPanel(); // Erstellung des KDVW Menues
-	JPanel panelAutoverwaltungMenue = new CarManagement(fv);	// Erstellung des AUVW Menues
+	JPanel panelKundenverwaltungMenue  = new CustomerManagement(this); //new JPanel(); // Erstellung des KDVW Menues
+	JPanel panelAutoverwaltungMenue = new CarManagement(this);	// Erstellung des AUVW Menues
 	CardLayout cl = new CardLayout();
 	JPanel containerPanel = new JPanel();
 
