@@ -8,13 +8,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Vector;
 
+// // TODO: 15.02.2020 weitere Footer deelten
+
 public class CustomerManagement extends JPanel
 {
     JPanel headerPanelK = new JPanel(); // für den Header vom KundenMenue
     JLabel textHeaderKundenVerwaltung = new JLabel("Kundenverwaltung");
-    JPanel footerPanel = new JPanel();  // für alle Menues
-    JLabel textFooter = new JLabel(
-            "Created by: Nico Zahmel, Christopher Alb, " + "Wilhelm Wöhlte, Mirko Reefschläger, Torben Hammes");
 
     // Die Liste im Center
     private JTable cusTable;
@@ -143,19 +142,9 @@ public class CustomerManagement extends JPanel
         rechtsPanel.add(buttonPanel, BorderLayout.NORTH);
         rechtsPanel.add(zurueckButton, BorderLayout.SOUTH);
 
-        // Footer
-        // Definition der Schriftart Footer
-        Font schriftartFooter = new Font("Serif", Font.PLAIN + Font.ITALIC, 20);
-        textFooter.setFont(schriftartFooter); // legt die Schriftart fest.
-        // Das Zentrum des Geschehens - fügt den Text hinzu & platziert ihn im footerPanel
-        footerPanel.add(textFooter); // fügt das Text-Label unten hinzu.
-        footerPanel.setBackground(Color.RED);
-        footerPanel.add(textFooter);
-
         add(headerPanelK, BorderLayout.NORTH);
         add(linksPanel, BorderLayout.CENTER);
         add(rechtsPanel, BorderLayout.EAST);
-        add(footerPanel, BorderLayout.SOUTH);
     }
     public static Vector createDataVector() {
     	return null;

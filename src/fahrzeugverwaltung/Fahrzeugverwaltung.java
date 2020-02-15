@@ -55,9 +55,6 @@ public class Fahrzeugverwaltung implements IFahrzeugverwaltung{
 		fahrzeug.setGetriebe(getriebe);
 		fahrzeug.setKraftstoff(kraftstoff);
 		fahrzeug.setKilometerstand(kilometerstand);
-		
-		
-		
 	}
 	public Fahrzeug fBearbeiten(int index) {
 		return fahrzeuglist.get(index);

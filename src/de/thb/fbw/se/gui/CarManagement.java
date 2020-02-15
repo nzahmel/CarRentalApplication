@@ -16,8 +16,6 @@ public class CarManagement extends JPanel implements ActionListener {
     JPanel headerPanelA = new JPanel(); // für den Header AutoMenue
     JLabel textHeaderFahrzeugVerwaltung = new JLabel("Autoverwaltung");
     JPanel footerPanel = new JPanel();  // für alle Menues
-    JLabel textFooter = new JLabel(
-            "Created by: Nico Zahmel, Christopher Alb, " + "Wilhelm Wöhlte, Mirko Reefschläger, Torben Hammes");
 
     // Die Liste im Center
 
@@ -150,21 +148,12 @@ public class CarManagement extends JPanel implements ActionListener {
         rechtsPanel.add(buttonPanel, BorderLayout.NORTH);
         rechtsPanel.add(zurueckButton, BorderLayout.SOUTH);
 
-        // Footer
-        // Definition der Schriftart Footer
-        Font schriftartFooter = new Font("Serif", Font.PLAIN + Font.ITALIC, 20);
-        textFooter.setFont(schriftartFooter); // legt die Schriftart fest.
-        // Das Zentrum des Geschehens - fügt den Text hinzu & platziert ihn im footerPanel
-        footerPanel.add(textFooter); // fügt das Text-Label unten hinzu.
-        footerPanel.setBackground(Color.RED);
-        footerPanel.add(textFooter);
 
         add(headerPanelA, BorderLayout.NORTH);
         add(linksPanel, BorderLayout.CENTER);
         add(rechtsPanel, BorderLayout.EAST);
         add(footerPanel, BorderLayout.SOUTH);
-        
-    }
+            }
 
 
 

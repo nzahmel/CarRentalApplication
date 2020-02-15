@@ -102,6 +102,7 @@ public class Fahrzeug {
 		this.kilometerstand = kilometerstand;
 	}
 
+	// Gibt die einzelnen Values des jeweiligen Objekts auf der Konsole aus
 	@Override
 	public String toString() {
 		return "Fahrzeug{" +

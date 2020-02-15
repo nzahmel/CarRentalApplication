@@ -28,6 +28,7 @@ public class CarRentalMainWindow extends JFrame {
 	JPanel panelMainMenue = new JPanel();	// Erstellung der Arbeitsflaeche des Hauptmenue-Fensters
 	JPanel panelKundenverwaltungMenue  = new CustomerManagement(this); //new JPanel(); // Erstellung des KDVW Menues
 	JPanel panelAutoverwaltungMenue = new CarManagement(this);	// Erstellung des AUVW Menues
+	JPanel panelVerfuegbarkeitMenue = new Availability(this);
 	CardLayout cl = new CardLayout();
 	JPanel containerPanel = new JPanel();
 
@@ -52,7 +53,8 @@ public class CarRentalMainWindow extends JFrame {
 	// Schriftart & Größe der Buttons vom MainWindow.
 	Font schriftartButtons = new Font("Arial", Font.PLAIN, 20);
 
-	// KONSTRUKTOR!
+
+	///////////////// KONSTRUKTOR!
 	public CarRentalMainWindow() {
 		/*
 		 * Initialisierung & Anpassung JFrame & Title
@@ -63,6 +65,9 @@ public class CarRentalMainWindow extends JFrame {
 		// muss nach pack() oder setSize ausgefuehrt werden!
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setLayout(new BorderLayout());
+
+
 
 		/*
 		* Dies ist der Hauptcontainer, in dem alle Menues in Form von Karten (einzelnen Panels) angelegt werden.
@@ -119,8 +124,6 @@ public class CarRentalMainWindow extends JFrame {
 		buttonPanelM.add(buttonPanelMLinks);
 
 
-		// TODO: 09.01.2020 Initialisierung Buttons 1. Menue "Kundenverwaltung": hinz, loesch, bearb
-
 		/*
 		 * Einbindung vom Image mit einem JLabel MainMenue
 		 */
@@ -138,12 +141,13 @@ public class CarRentalMainWindow extends JFrame {
 		// FINAL ADDS:
 		panelMainMenue.add(headerPanelM, BorderLayout.NORTH);
 		panelMainMenue.add(buttonPanelM, BorderLayout.CENTER);
-		panelMainMenue.add(footerPanel, BorderLayout.SOUTH);
+		add(footerPanel, BorderLayout.SOUTH);
 
 		containerPanel.add(panelMainMenue, "RNTLMAIN");
 		cl.show(containerPanel, "RNTLMAIN");
 		containerPanel.add(panelKundenverwaltungMenue, "CSTMMNGM");
 		containerPanel.add(panelAutoverwaltungMenue, "CRMNGM");
+		containerPanel.add(panelVerfuegbarkeitMenue, "VRFGBRKT");
 
 		/*
 		  Logical Part
@@ -162,7 +166,7 @@ public class CarRentalMainWindow extends JFrame {
 		});
 		bVerfuegbarkeit.addActionListener(e -> {
 
-			JOptionPane.showMessageDialog(null, "Willkommen im Verfügbarkeits Check!");
+			cl.show(containerPanel, "VRFGBRKT");
 		});
 
 		// <<<< Design + Adds Footer General >>>>
