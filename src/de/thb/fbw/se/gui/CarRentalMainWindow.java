@@ -24,13 +24,14 @@ import fahrzeugverwaltung.IFahrzeugverwaltung;
 
 public class CarRentalMainWindow extends JFrame {
 	// Variablendeklaration
-	static IFahrzeugverwaltung fv = new Fahrzeugverwaltung();
-	public static JPanel panelMainMenue = new JPanel();	// Erstellung der Arbeitsflaeche des Hauptmenue-Fensters
-	public static JPanel panelKundenverwaltungMenue  = new CustomerManagement(); //new JPanel(); // Erstellung des KDVW Menues
-	public static JPanel panelAutoverwaltungMenue = new CarManagement(fv);	// Erstellung des AUVW Menues
-	public static CardLayout cl = new CardLayout();
-	public static JPanel containerPanel = new JPanel();
-	
+
+	IFahrzeugverwaltung fv = new Fahrzeugverwaltung();
+	JPanel panelMainMenue = new JPanel();	// Erstellung der Arbeitsflaeche des Hauptmenue-Fensters
+	JPanel panelKundenverwaltungMenue  = new CustomerManagement(this); //new JPanel(); // Erstellung des KDVW Menues
+	JPanel panelAutoverwaltungMenue = new CarManagement(fv, this);	// Erstellung des AUVW Menues
+	CardLayout cl = new CardLayout();
+	JPanel containerPanel = new JPanel();
+
 	public void run() {
 		fv.fHinzufuegen(new Fahrzeug("", "", "", "le", "", 300));
 	}
@@ -164,7 +165,7 @@ public class CarRentalMainWindow extends JFrame {
 			cl.show(containerPanel, "CRMNGM");
 		});
 		bVerfuegbarkeit.addActionListener(e -> {
-			
+
 			JOptionPane.showMessageDialog(null, "Willkommen im Verfügbarkeits Check!");
 		});
 

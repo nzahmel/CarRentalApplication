@@ -22,14 +22,15 @@ public class CarManagement extends JPanel implements ActionListener {
             "Created by: Nico Zahmel, Christopher Alb, " + "Wilhelm Wöhlte, Mirko Reefschläger, Torben Hammes");
 
     // Die Liste im Center
-	 
+
     //JTable flist;
-    
+
     private JTable table;
     private DefaultTableModel model;
-    
-    public CarManagement(IFahrzeugverwaltung fahrzeugverwaltung) {
-       	
+    CarRentalMainWindow mw;
+
+    public CarManagement(IFahrzeugverwaltung fahrzeugverwaltung, CarRentalMainWindow mainWindow) {
+       	mw = mainWindow;
     	 // -------
         // EAST bekommt ein Panel mit eigenem BorderLayout
         JPanel rechtsPanel = new JPanel();
@@ -41,7 +42,8 @@ public class CarManagement extends JPanel implements ActionListener {
         JButton anlegeButton = new JButton("Anlegen");
         JButton bearbeitenButton = new JButton("Bearbeiten");
         JButton entferneButton = new JButton("Löschen");
-        
+
+
      // Definition der Schriftart für den Header
         Font schriftartHeader = new Font("Serif", Font.PLAIN + Font.ITALIC, 40);
         // Schriftart & Größe der Buttons vom MainWindow.
@@ -64,10 +66,10 @@ public class CarManagement extends JPanel implements ActionListener {
         // Table Links
         JPanel linksPanel = new JPanel();
         linksPanel.setLayout(new BorderLayout());
-        
+
         String[] COLUMN_TITLE = new String[] {"ID", "Fahrzeugkategorie", "Hersteller", "Modell", "Getriebe", "Kraftstoff",
         		"Kilometerstand"};
-       
+
         DefaultTableModel model = new DefaultTableModel(COLUMN_TITLE, 0){
         			public boolean isCellEditable(int row, int column)
         			{
@@ -75,21 +77,21 @@ public class CarManagement extends JPanel implements ActionListener {
         			}
         		}
         		;
-        
+
         model.addRow(new Object[] {"1","PKW","BMW", "e46 3er", "manuell", "Benzin", "200"});
         model.addRow(new Object[] {"2","PKW","Mercedes", "C36 AMG", "manuell", "Benzin", "1000"});
         model.addRow(new Object[] {"3","PKW","Mazda", "mx 5", "manuell", "Diesel", "200"});
         model.addRow(new Object[] {"4","PKW","Tesla", "Modell 3", "automatik", "Strom", "2500"});
         JTable table = new JTable(model);
-       
-        
+
+
         //flist = new JTable(new FahrzeugTable(fahrzeugverwaltung));
         //flist = new JTable(data, COLUMN_TITLES);
         //flist.setFont(schriftArtListe);
-        
+
         // PanelLinks + Liste
         linksPanel.add(new JScrollPane(table));
-        
+
         // rechtsPanel
         rechtsPanel.setLayout(new BorderLayout());
         buttonPanel.setLayout(new GridLayout(3, 1));
@@ -106,26 +108,26 @@ public class CarManagement extends JPanel implements ActionListener {
 
         // Lambda Ausdruck für Back Funktionalität
         zurueckButton.addActionListener( e -> {
-            CarRentalMainWindow.cl.show(CarRentalMainWindow.containerPanel, "RNTLMAIN");
+            mw.cl.show(mw.containerPanel, "RNTLMAIN");
         });
         anlegeButton.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent e) {
 				model.addRow(createDataVector());
-				
+
 			}
 		});
        bearbeitenButton.addActionListener(new ActionListener() {
-		
+
 		public void actionPerformed(ActionEvent e) {
 			// get selected row index
 			JOptionPane.showMessageDialog(null,"Die Funktion steht zur Zeit nicht zur Verfügung");
-		
+
 		}
 		});
-       
+
        entferneButton.addActionListener(new ActionListener() {
-				
+
 		public void actionPerformed(ActionEvent e) {
 			// get selected row index
 			try {
@@ -137,11 +139,11 @@ public class CarManagement extends JPanel implements ActionListener {
 			}
 		}
 	});
-       
+
         // ADDS
         headerPanelA.add(textHeaderFahrzeugVerwaltung);
 
-        
+
 
         // Buttons rechts oben im buttonPanel: anlegen, bearbeiten, hinzufügen.
         buttonPanel.add(anlegeButton);
@@ -163,29 +165,29 @@ public class CarManagement extends JPanel implements ActionListener {
         add(linksPanel, BorderLayout.CENTER);
         add(rechtsPanel, BorderLayout.EAST);
         add(footerPanel, BorderLayout.SOUTH);
-        
-        
-        
-        
+
+
+
+
     }
     public static Vector createDataVector() {
-    	
+
     	return null;
-    	
+
     }
-    
-    
-	
-    
+
+
+
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
-	} 
-	  	
-     
-	
-	
+
+	}
+
+
+
+
 
