@@ -155,7 +155,7 @@ public class CarManagement extends JPanel implements ActionListener {
         linksPanel.setLayout(new BorderLayout());
 
         String[] COLUMN_TITLE = new String[] {"ID", "Fahrzeugkategorie", "Hersteller", "Modell", "Getriebe", "Kraftstoff",
-        		"Kilometerstand", "Verfügbarkeit"};
+        		"Kilometerstand"};
        
         DefaultTableModel carModel = new DefaultTableModel(COLUMN_TITLE, 0){
         			public boolean isCellEditable(int row, int column)
@@ -163,8 +163,8 @@ public class CarManagement extends JPanel implements ActionListener {
         				return false;
         			}
         		};
-        carModel.addRow(new Object[] {"1","Mittelklasse","BMW", "e46 3er", "manuell", "Benzin", "200"});
-        carModel.addRow(new Object[] {"2","Luxus","Mercedes-Benz", "C36 AMG", "manuell", "Benzin", "1000"});
+        carModel.addRow(new Object[] {"1","Mittelklasse","BMW", "e46 3er", "Manuell", "Benzin", "200"});
+        carModel.addRow(new Object[] {"2","Luxus","Mercedes-Benz", "C36 AMG", "Manuell", "Benzin", "1000"});
         carModel.addRow(new Object[] {"3","Kompaktklasse","Mazda", "mx 5", "Manuell", "Diesel", "200"});
         carModel.addRow(new Object[] {"4","Mittelkalsse","Tesla", "Modell 3", "Automatik", "Strom", "2500"});
         JTable carTable = new JTable(carModel);
@@ -198,8 +198,15 @@ public class CarManagement extends JPanel implements ActionListener {
 				if(!txtID.getText().trim().equals("")) {
 				carModel.addRow(new Object[]{txtID.getText(), wahlKategorie.getSelectedItem().toString(),
 						wahlHersteller.getSelectedItem().toString(),txtModell.getText(),wahlGetriebe.getSelectedItem().toString()
-						,wahlKraftstoff.getSelectedItem().toString(),txtKilometerstand.getText(),radioNichtVerfuegbar.getSelectedObjects()});
-				
+						,wahlKraftstoff.getSelectedItem().toString(),txtKilometerstand.getText(),});
+				//Inhalt wird gelöscht
+				txtID.setText("");
+				wahlKategorie.setSelectedIndex(0);
+				wahlHersteller.setSelectedIndex(0);
+				txtModell.setText("");
+				wahlGetriebe.setSelectedIndex(0);
+				wahlKraftstoff.setSelectedIndex(0);
+				txtKilometerstand.setText("");
 				}else {
 					JOptionPane.showMessageDialog(null,"Die ID darf nicht Leer sein");	
 				}
@@ -223,6 +230,15 @@ public class CarManagement extends JPanel implements ActionListener {
 				carModel.setValueAt(wahlGetriebe.getSelectedItem().toString(), carTable.getSelectedRow(), 4);
 				carModel.setValueAt(wahlKraftstoff.getSelectedItem().toString(), carTable.getSelectedRow(), 5);
 				carModel.setValueAt(txtKilometerstand.getText(), carTable.getSelectedRow(), 6);
+				
+				//Inhalt wird gelöscht 
+				txtID.setText("");
+				wahlKategorie.setSelectedIndex(0);
+				wahlHersteller.setSelectedIndex(0);
+				txtModell.setText("");
+				wahlGetriebe.setSelectedIndex(0);
+				wahlKraftstoff.setSelectedIndex(0);
+				txtKilometerstand.setText("");
 			
 			
 				//JOptionPane.showMessageDialog(null,"Die Funktion steht zur Zeit nicht zur Verfügung!");
