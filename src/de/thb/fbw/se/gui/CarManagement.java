@@ -10,8 +10,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.Set;
 import java.util.UUID;
@@ -335,6 +337,35 @@ public class CarManagement extends JPanel implements ActionListener {
     			}
     		}
     		}); 
+       	
+       	ladenButton.addActionListener(new ActionListener() {
+    		
+    		@Override
+    		public void actionPerformed(ActionEvent e) {
+    			// Hier den Pfad angeben von wo sie die Textdatei laden möchten + Dateiname mit Dateiendung
+    			String filePath = "C:\\Users\\wiwo9\\git\\CarRentalApplication\\src\\de\\thb\\fbw\\se\\gui\\Fahrzeugliste";
+    			File file = new File(filePath);
+    			
+    			try {
+    				//löscht den Inhalt bevor er den neuen Inhalt lädt
+    				carModel.setRowCount(0);
+    				//Hier lädt er das File
+    				BufferedReader br = new BufferedReader(new FileReader(file));
+    				Object[] tableLines = br.lines().toArray();
+    				
+    				for(int i = 0; i < tableLines.length; i++)
+    				{
+    					String line = tableLines[i].toString().trim();
+    					String[] dataRow = line.split(" ");
+    					carModel.addRow(dataRow);
+    				}
+    				
+    			}catch(Exception ex){
+    				JOptionPane.showMessageDialog(null, " Die Datei wurde nicht gefunden.");
+    			}
+    			
+    		}
+    	});
        
     	   
        
