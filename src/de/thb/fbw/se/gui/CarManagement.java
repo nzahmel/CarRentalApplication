@@ -10,6 +10,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.util.Set;
 import java.util.UUID;
 import java.util.Vector;
@@ -302,7 +305,36 @@ public class CarManagement extends JPanel implements ActionListener {
        		
        	});
        	
-    	   
+       	speichernButton.addActionListener(new ActionListener() {
+
+    		public void actionPerformed(ActionEvent e) {
+    			try {
+    			//Hier den Pfad angeben wo sie die Textdatei gespeichert haben + Dateiname mit Dateiendung
+    			File file = new File("C:\\Users\\wiwo9\\git\\CarRentalApplication\\src\\de\\thb\\fbw\\se\\gui\\Fahrzeugliste");
+    			if(!file.exists()) {
+    				file.createNewFile();
+    				
+    			}
+    			
+    			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+    			BufferedWriter bw = new BufferedWriter(fw);
+    			
+    			for(int i = 0; i < carTable.getRowCount(); i++) {
+    				for(int j = 0; j < carTable.getColumnCount(); j++) {
+    					bw.write((String)carTable.getModel().getValueAt(i, j) + " ");
+    				}
+    				bw.write("\r\n");
+    			}
+    			bw.close();
+    			fw.close();
+    			JOptionPane.showMessageDialog(null, " Die Tabelle wurde gespeichert.");
+    			
+    			}catch(Exception ex){
+    				JOptionPane.showMessageDialog(null, " Datei konnte nicht gefunden werden. Bitte Überprüfen sie den Dateipfad.");
+    				
+    			}
+    		}
+    		}); 
        
     	   
        
