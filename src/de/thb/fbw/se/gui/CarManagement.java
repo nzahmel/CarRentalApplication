@@ -111,7 +111,7 @@ public class CarManagement extends JPanel implements ActionListener {
                 "Dutton", "e.GO", "Estrima", "Ferrari", "Fiat", "Fisker" ,"Gac Gonow", "Galloper",
                 "GAZ", "GEM", "GEMBALLA", "Gillet", "Giotti Victoria", "GMC" ,"Goupil", "Great Wall",
                 "Grevac", "Haima", "Haval", "Honda", "HUMMER", "Hurtan" ,"Hyundai", "Infiniti",
-                "Innocenti", "Iso Rivolta", "Isuzu", "Iveco", "IZH", "Jaguar"};
+                "Innocenti", "Iso Rivolta", "Isuzu", "Iveco", "IZH", "Jaguar","Mazda"};
         wahlHersteller = new JComboBox<String>(strHerstellerWahl);
 
         String[] strGetriebeWahl = {"Manuell" ,"Automatik"};
@@ -163,7 +163,7 @@ public class CarManagement extends JPanel implements ActionListener {
         		};
 
         carModel.addRow(new Object[] {"1","PKW","BMW", "e46 3er", "manuell", "Benzin", "200"});
-        carModel.addRow(new Object[] {"2","PKW","Mercedes", "C36 AMG", "manuell", "Benzin", "1000"});
+        carModel.addRow(new Object[] {"2","PKW","Mercedes-Benz", "C36 AMG", "manuell", "Benzin", "1000"});
         carModel.addRow(new Object[] {"3","PKW","Mazda", "mx 5", "manuell", "Diesel", "200"});
         carModel.addRow(new Object[] {"4","PKW","Tesla", "Modell 3", "automatik", "Strom", "2500"});
         JTable carTable = new JTable(carModel);
