@@ -205,7 +205,7 @@ public class CarManagement extends JPanel implements ActionListener {
 				if(!txtID.getText().trim().equals("")) {
 				carModel.addRow(new Object[]{txtID.getText(), wahlKategorie.getSelectedItem().toString(),
 						wahlHersteller.getSelectedItem().toString(),txtModell.getText(),wahlGetriebe.getSelectedItem().toString()
-						,wahlKraftstoff.getSelectedItem().toString(),txtKilometerstand.getText(),});
+						,wahlKraftstoff.getSelectedItem().toString(),txtKilometerstand.getText()});
 				//Inhalt wird gelöscht
 				txtID.setText("");
 				wahlKategorie.setSelectedIndex(0);
@@ -237,6 +237,8 @@ public class CarManagement extends JPanel implements ActionListener {
 				carModel.setValueAt(wahlGetriebe.getSelectedItem().toString(), carTable.getSelectedRow(), 4);
 				carModel.setValueAt(wahlKraftstoff.getSelectedItem().toString(), carTable.getSelectedRow(), 5);
 				carModel.setValueAt(txtKilometerstand.getText(), carTable.getSelectedRow(), 6);
+				
+				
 				
 				//Inhalt wird gelöscht 
 				txtID.setText("");
