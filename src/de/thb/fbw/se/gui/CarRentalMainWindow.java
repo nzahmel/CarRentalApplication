@@ -139,7 +139,7 @@ public class CarRentalMainWindow extends JFrame {
 		//panelMainMenue.add(headerPanelM, BorderLayout.NORTH);
 		panelMainMenue.add(buttonPanelM, BorderLayout.CENTER);
 		add(footerPanel, BorderLayout.SOUTH);
-		add(headerPanelM, BorderLayout.NORTH);
+		panelMainMenue.add(headerPanelM, BorderLayout.NORTH);
 
 		containerPanel.add(panelMainMenue, "RNTLMAIN");
 		// Definiert die per default oberste Karte (Startseite) im Card Layout System
