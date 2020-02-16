@@ -23,14 +23,8 @@ public class CarManagement extends JPanel implements ActionListener {
     JPanel headerPanelA = new JPanel(); // für den Header AutoMenue
     JLabel textHeaderFahrzeugVerwaltung = new JLabel("Autoverwaltung");
 
-    // Die Liste im Center
-
-    //JTable flist;
-
     CarRentalMainWindow mw;
-    private JTable carTable;
-    private DefaultTableModel carModel;
-
+    
     // Deklaration Variablen der Eingabemasken
     JLabel labFahrzeugID, labFahrzeugkategorie, labHersteller, labModell, labGetriebe, labKraftstoff, labKilometerstand;
     JRadioButton radioVerfuegbar, radioNichtVerfuegbar;

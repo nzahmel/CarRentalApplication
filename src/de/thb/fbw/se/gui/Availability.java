@@ -61,8 +61,8 @@ public class Availability extends JPanel
         JPanel linksPanel = new JPanel();
         linksPanel.setLayout(new BorderLayout());
 
-        String[] COLUMN_TITLE = new String[] {"Kundennummer", "Vorname", "Name", "Geburtsdatum", "Wohnort", "PLZ",
-                "Straße"};
+        String[] COLUMN_TITLE = new String[] {"Kundennummer", "Vorname", "Name", "ID", "Hersteller", "Leihdauer",
+                "Telefonnummer"};
 
         DefaultTableModel cusModel = new DefaultTableModel(COLUMN_TITLE, 0){
             public boolean isCellEditable(int row, int column)
@@ -71,10 +71,9 @@ public class Availability extends JPanel
             }
         };
 
-        cusModel.addRow(new Object[] {"0001","Christin", "Meier", "27.03.1989", "Brandenburg", "14770","Prühlitzer Straße 8"});
-        cusModel.addRow(new Object[] {"0002","Mike","Müller", "22.07.1978", "Berlin", "10115", "Torstraße 5"});
-        cusModel.addRow(new Object[] {"0003","Alex","Schulz", "12.01.1991", "Brandenburg", "14772", "Wilhelmsdorfer Straße 12"});
-        cusModel.addRow(new Object[] {"0004","Luisa","Recknagel", "17.12.1995", "Potsdam", "14467", "Steinbeck Straße 3"});
+        cusModel.addRow(new Object[] {"0001","Christin", "Meier", "1", "BMW", "10 Tage","01624581669"});
+        cusModel.addRow(new Object[] {"0002","Mike","Müller", "2", "Mercedes-Benz", "2 Tage", "015258916603"});
+        
         JTable cusTable = new JTable(cusModel);
 
         //cusTable.setFont(schriftArtListe);
