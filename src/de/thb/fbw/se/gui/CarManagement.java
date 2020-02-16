@@ -46,6 +46,8 @@ public class CarManagement extends JPanel implements ActionListener {
         JButton anlegeButton = new JButton("Anlegen");
         JButton bearbeitenButton = new JButton("Bearbeiten");
         JButton entferneButton = new JButton("Löschen");
+        JButton speichernButton = new JButton("Speichern");
+        JButton ladenButton = new JButton("Datensatz Laden");
 
 
      // Definition der Schriftart für den Header
@@ -153,7 +155,7 @@ public class CarManagement extends JPanel implements ActionListener {
         linksPanel.setLayout(new BorderLayout());
 
         String[] COLUMN_TITLE = new String[] {"ID", "Fahrzeugkategorie", "Hersteller", "Modell", "Getriebe", "Kraftstoff",
-        		"Kilometerstand"};
+        		"Kilometerstand", "Verfügbarkeit"};
        
         DefaultTableModel carModel = new DefaultTableModel(COLUMN_TITLE, 0){
         			public boolean isCellEditable(int row, int column)
@@ -161,18 +163,12 @@ public class CarManagement extends JPanel implements ActionListener {
         				return false;
         			}
         		};
-
         carModel.addRow(new Object[] {"1","Mittelklasse","BMW", "e46 3er", "manuell", "Benzin", "200"});
         carModel.addRow(new Object[] {"2","Luxus","Mercedes-Benz", "C36 AMG", "manuell", "Benzin", "1000"});
         carModel.addRow(new Object[] {"3","Kompaktklasse","Mazda", "mx 5", "Manuell", "Diesel", "200"});
         carModel.addRow(new Object[] {"4","Mittelkalsse","Tesla", "Modell 3", "Automatik", "Strom", "2500"});
         JTable carTable = new JTable(carModel);
-       
-        
-        //flist = new JTable(new FahrzeugTable(fahrzeugverwaltung));
-        //flist = new JTable(data, COLUMN_TITLES);
-        //flist.setFont(schriftArtListe);
-
+               
         // PanelLinks -> Maske & Table
         linksPanel.add(linksPaneloben, BorderLayout.NORTH);
         linksPanelunten.add(new JScrollPane(carTable));
@@ -180,7 +176,7 @@ public class CarManagement extends JPanel implements ActionListener {
         
         // rechtsPanel
         rechtsPanel.setLayout(new BorderLayout());
-        buttonPanel.setLayout(new GridLayout(3, 1));
+        buttonPanel.setLayout(new GridLayout(5, 1));
 
         // Buttons rechts oben: anlegen, bearbeiten, hinzufügen.
         anlegeButton.setFont(schriftartButtons);
@@ -202,7 +198,8 @@ public class CarManagement extends JPanel implements ActionListener {
 				if(!txtID.getText().trim().equals("")) {
 				carModel.addRow(new Object[]{txtID.getText(), wahlKategorie.getSelectedItem().toString(),
 						wahlHersteller.getSelectedItem().toString(),txtModell.getText(),wahlGetriebe.getSelectedItem().toString()
-						,wahlKraftstoff.getSelectedItem().toString(),txtKilometerstand.getText()});
+						,wahlKraftstoff.getSelectedItem().toString(),txtKilometerstand.getText(),radioNichtVerfuegbar.getSelectedObjects()});
+				
 				}else {
 					JOptionPane.showMessageDialog(null,"Die ID darf nicht Leer sein");	
 				}
@@ -211,7 +208,7 @@ public class CarManagement extends JPanel implements ActionListener {
        bearbeitenButton.addActionListener(new ActionListener() {
 
 		public void actionPerformed(ActionEvent e) {
-			// get selected row index
+			// berarbeiten der Daten möglich
 			if(carTable.getSelectedRow()==-1) {
 				if(carTable.getRowCount()==0) {
 					JOptionPane.showMessageDialog(null,"Tabelle ist leer.");	
