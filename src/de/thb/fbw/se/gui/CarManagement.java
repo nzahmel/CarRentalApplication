@@ -47,7 +47,7 @@ public class CarManagement extends JPanel implements ActionListener {
         JButton bearbeitenButton = new JButton("Bearbeiten");
         JButton entferneButton = new JButton("Löschen");
         JButton speichernButton = new JButton("Speichern");
-        JButton ladenButton = new JButton("Datensatz Laden");
+        JButton ladenButton = new JButton("Laden");
 
 
      // Definition der Schriftart für den Header
@@ -183,6 +183,8 @@ public class CarManagement extends JPanel implements ActionListener {
         anlegeButton.setPreferredSize(new Dimension(90, 50));
         bearbeitenButton.setFont(schriftartButtons);
         entferneButton.setFont(schriftartButtons);
+        speichernButton.setFont(schriftartButtons);
+        ladenButton.setFont(schriftartButtons);
 
         // Zurück-Button rechts unten
         zurueckButton.setFont(schriftartButtons);
@@ -299,6 +301,7 @@ public class CarManagement extends JPanel implements ActionListener {
 			}
        		
        	});
+       	
     	   
        
     	   
@@ -313,6 +316,8 @@ public class CarManagement extends JPanel implements ActionListener {
         buttonPanel.add(anlegeButton);
         buttonPanel.add(bearbeitenButton);
         buttonPanel.add(entferneButton);
+        buttonPanel.add(speichernButton);
+        buttonPanel.add(ladenButton);
         rechtsPanel.add(buttonPanel, BorderLayout.NORTH);
         rechtsPanel.add(zurueckButton, BorderLayout.SOUTH);
 
