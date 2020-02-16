@@ -12,8 +12,9 @@ import java.util.Vector;
 
 public class CustomerManagement extends JPanel
 {
-    JPanel headerPanelK = new JPanel(); // für den Header vom KundenMenue
+    //JPanel headerPanelK = new JPanel(); // für den Header vom KundenMenue
     JLabel textHeaderKundenVerwaltung = new JLabel("Kundenverwaltung");
+
 
     // Die Liste im Center
     private JTable cusTable;
@@ -36,6 +37,8 @@ public class CustomerManagement extends JPanel
 
     public CustomerManagement(CarRentalMainWindow mainWindow){
         mw = mainWindow;
+/*        mw.remove(mw.textHeaderMainMenue);
+        mw.add(textHeaderKundenVerwaltung);*/
 
         // Definition der Schriftart für den Header
         Font schriftartHeader = new Font("Serif", Font.PLAIN + Font.ITALIC, 40);
@@ -53,8 +56,8 @@ public class CustomerManagement extends JPanel
         textHeaderKundenVerwaltung.setHorizontalAlignment(JLabel.CENTER);
         textHeaderKundenVerwaltung.setVerticalAlignment(JLabel.CENTER);
         textHeaderKundenVerwaltung.setFont(schriftartHeader); // legt die Schriftart fest.
-        headerPanelK.setBackground(Color.GRAY);
-        headerPanelK.setOpaque(true);
+        //headerPanelK.setBackground(Color.GRAY);
+        //headerPanelK.setOpaque(true);
 
 
         // Table Links
@@ -131,7 +134,7 @@ public class CustomerManagement extends JPanel
 
 
         // ADDS
-        headerPanelK.add(textHeaderKundenVerwaltung);
+        //headerPanelK.add(textHeaderKundenVerwaltung);
 
 
 
@@ -142,7 +145,7 @@ public class CustomerManagement extends JPanel
         rechtsPanel.add(buttonPanel, BorderLayout.NORTH);
         rechtsPanel.add(zurueckButton, BorderLayout.SOUTH);
 
-        add(headerPanelK, BorderLayout.NORTH);
+        //add(headerPanelK, BorderLayout.NORTH);
         add(linksPanel, BorderLayout.CENTER);
         add(rechtsPanel, BorderLayout.EAST);
     }

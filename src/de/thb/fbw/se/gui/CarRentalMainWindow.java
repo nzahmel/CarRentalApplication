@@ -19,38 +19,37 @@ import javax.swing.border.Border;
  */
 
 public class CarRentalMainWindow extends JFrame {
-	// Variablendeklaration
 
+	// Deklaration & Initialisierung der Hauptpanel
+	CardLayout cl = new CardLayout();
+	JPanel containerPanel = new JPanel();
 	JPanel panelMainMenue = new JPanel();	// Erstellung der Arbeitsflaeche des Hauptmenue-Fensters
 	JPanel panelKundenverwaltungMenue  = new CustomerManagement(this); //new JPanel(); // Erstellung des KDVW Menues
 	JPanel panelAutoverwaltungMenue = new CarManagement(this);	// Erstellung des AUVW Menues
 	JPanel panelVerfuegbarkeitMenue = new Availability(this);
-	CardLayout cl = new CardLayout();
-	JPanel containerPanel = new JPanel();
 
-
+	// Deklaration & Initialisierung der 2nd Level Panel
 	JPanel headerPanelM = new JPanel(); // für das MainMenue
 	JPanel buttonPanelM = new JPanel(); // für das MainMenue
 	Box buttonPanelMLinks = Box.createVerticalBox(); // ButtonPanelMainLinks
 	Box buttonPanelMRechts = Box.createVerticalBox(); // ButtonPanelMainRechts
 	JPanel footerPanel = new JPanel();  // für alle Menues
-
-	JLabel textHeaderMainMenue = new JLabel("Verwaltungsprogramm v 1.0");
-	JLabel textFooter = new JLabel(
-			"Created by: Nico Zahmel, Christopher Alb, " + "Wilhelm Wöhlte, Mirko Reefschläger, Torben Hammes");
-
-	JButton bCustomerManagement = new JButton(" Kundenverwaltung  ");
-	JButton bCarManagement = new JButton("Fahrzeugverwaltung");
-	JButton bVerfuegbarkeit = new JButton("    Verfügbarkeit      ");
+	// Deklaration der Labels für die 2nd Level Panel
+	JLabel textHeaderMainMenue;
+	JLabel textFooter;
+	// Deklaration der Buttons vom Hauptmenue
+	JButton bCustomerManagement;
+	JButton bCarManagement;
+	JButton bVerfuegbarkeit;
 
 	// Definition der Schriftart für den Header
 	Font schriftartHeader = new Font("Serif", Font.PLAIN + Font.ITALIC, 40);
-
 	// Schriftart & Größe der Buttons vom MainWindow.
 	Font schriftartButtons = new Font("Arial", Font.PLAIN, 20);
 
 
 	///////////////// KONSTRUKTOR!
+
 	public CarRentalMainWindow() {
 		/*
 		 * Initialisierung & Anpassung JFrame & Title
@@ -66,7 +65,7 @@ public class CarRentalMainWindow extends JFrame {
 
 
 		/*
-		* Dies ist der Hauptcontainer, in dem alle Menues in Form von Karten (einzelnen Panels) angelegt werden.
+		* Dies ist der Hauptcontainer, in dem alle Menues in Form von "Karten" (einzelnen Panels) angelegt werden.
 		*/
 		containerPanel.setLayout(cl);
 
@@ -82,7 +81,8 @@ public class CarRentalMainWindow extends JFrame {
 		// Content-Panel vom MainMenue
 		panelMainMenue.setLayout(new BorderLayout());
 
-		// headerMainMenue
+		// Initialisierung HeaderMainMenue
+		textHeaderMainMenue = new JLabel("Verwaltungsprogramm v 1.0");
 		textHeaderMainMenue.setHorizontalAlignment(JLabel.CENTER);
 		textHeaderMainMenue.setVerticalAlignment(JLabel.CENTER);
 		textHeaderMainMenue.setFont(schriftartHeader); // legt die Schriftart fest.
@@ -95,11 +95,14 @@ public class CarRentalMainWindow extends JFrame {
 		Border border = BorderFactory.createLineBorder(Color.BLACK); 	// Black Border um das ButtonPanel
 		buttonPanelM.setBorder(border);
 
-				/*
-		Buttons MAINMENUE
-		 */
+
+		// ---- Buttons MAINMENUE
+
 
 		// Zuweisung der Attribute der Buttons von MainMenue
+		bCustomerManagement = new JButton(" Kundenverwaltung  ");
+		bCarManagement = new JButton("Fahrzeugverwaltung");
+		bVerfuegbarkeit = new JButton("    Verfügbarkeit      ");
 		bCarManagement.setFont(schriftartButtons);
 		bCustomerManagement.setFont(schriftartButtons);
 		bVerfuegbarkeit.setFont(schriftartButtons);
@@ -108,7 +111,7 @@ public class CarRentalMainWindow extends JFrame {
 		bVerfuegbarkeit.setPreferredSize(new Dimension(100, 100));
 
 
-		// Linkes ButtonPanel
+		// ----- Linkes ButtonPanel
 
 		buttonPanelMLinks.add(Box.createVerticalGlue());
 		buttonPanelMLinks.add(bCustomerManagement);
@@ -120,9 +123,9 @@ public class CarRentalMainWindow extends JFrame {
 		buttonPanelM.add(buttonPanelMLinks);
 
 
-		/*
-		 * Einbindung vom Image mit einem JLabel MainMenue
-		 */
+
+		// -----  Einbindung vom Image via JLabel MainMenue
+
 		JLabel jl = new JLabel();
 		jl.setIcon(new ImageIcon("image/autoklein.png"));
 		jl.setPreferredSize(new Dimension(500, 350));
@@ -130,30 +133,28 @@ public class CarRentalMainWindow extends JFrame {
 		buttonPanelMRechts.add(Box.createVerticalGlue());
 		buttonPanelMRechts.add(jl);
 		buttonPanelMRechts.add(Box.createVerticalGlue());
-		//validate();
-
 		buttonPanelM.add(buttonPanelMRechts);
 
 		// FINAL ADDS:
-		panelMainMenue.add(headerPanelM, BorderLayout.NORTH);
+		//panelMainMenue.add(headerPanelM, BorderLayout.NORTH);
 		panelMainMenue.add(buttonPanelM, BorderLayout.CENTER);
 		add(footerPanel, BorderLayout.SOUTH);
+		add(headerPanelM, BorderLayout.NORTH);
 
 		containerPanel.add(panelMainMenue, "RNTLMAIN");
+		// Definiert die per default oberste Karte (Startseite) im Card Layout System
 		cl.show(containerPanel, "RNTLMAIN");
 		containerPanel.add(panelKundenverwaltungMenue, "CSTMMNGM");
 		containerPanel.add(panelAutoverwaltungMenue, "CRMNGM");
 		containerPanel.add(panelVerfuegbarkeitMenue, "VRFGBRKT");
 
 		/*
-		  Logical Part
+		  Logical Part Button Funktionalität
 		 */
 
 		// Lambda Version für Button-Funktionalität.
 		bCustomerManagement.addActionListener(e -> {
-			/*
-			  Sobald der Btn in Action ist, wird panelMainMenue entfernt & panelKundenverwaltungMenue initialisiert.
-			 */
+			// Bei Aktivierung des Buttons wird die Karte "CTSMMNGM" angezeigt.
 			cl.show(containerPanel, "CSTMMNGM");
 		});
 
@@ -161,11 +162,12 @@ public class CarRentalMainWindow extends JFrame {
 			cl.show(containerPanel, "CRMNGM");
 		});
 		bVerfuegbarkeit.addActionListener(e -> {
-
 			cl.show(containerPanel, "VRFGBRKT");
 		});
 
 		// <<<< Design + Adds Footer General >>>>
+		textFooter = new JLabel(
+				"Created by: Nico Zahmel, Christopher Alb, " + "Wilhelm Wöhlte, Mirko Reefschläger, Torben Hammes");
 		// Definition der Schriftart Footer
 		Font schriftartFooter = new Font("Serif", Font.PLAIN + Font.ITALIC, 20);
 		textFooter.setFont(schriftartFooter); // legt die Schriftart fest.
