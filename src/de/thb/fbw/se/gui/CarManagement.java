@@ -15,7 +15,6 @@ import java.util.Vector;
 public class CarManagement extends JPanel implements ActionListener {
     JPanel headerPanelA = new JPanel(); // für den Header AutoMenue
     JLabel textHeaderFahrzeugVerwaltung = new JLabel("Autoverwaltung");
-    JPanel footerPanel = new JPanel();  // für alle Menues
 
     // Die Liste im Center
 
@@ -152,7 +151,6 @@ public class CarManagement extends JPanel implements ActionListener {
         add(headerPanelA, BorderLayout.NORTH);
         add(linksPanel, BorderLayout.CENTER);
         add(rechtsPanel, BorderLayout.EAST);
-        add(footerPanel, BorderLayout.SOUTH);
             }
 
 
