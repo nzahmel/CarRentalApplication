@@ -98,11 +98,11 @@ public class CarManagement extends JPanel implements ActionListener {
         txtKilometerstand = new JTextField();
 
         // ComboBoxen
-        String[] strKategorieWahl = {"Kleinstwagen" ,"Kleinwagen", "Kompaktklasse",
+        String[] strKategorieWahl = {" ", "Kleinstwagen" ,"Kleinwagen", "Kompaktklasse",
                 "Mittelklasse", "Obere Mittelklasse", "Luxus", "Cabriolet", "SUV", "VAN"};
         wahlKategorie = new JComboBox<String>(strKategorieWahl);
 
-        String[] strHerstellerWahl = {"Mercedes-Benz" ,"BMW", "Volkswagen",
+        String[] strHerstellerWahl = {" ", "Mercedes-Benz" ,"BMW", "Volkswagen",
                 "Audi", "Ford", "Porsche", "Opel", "9ff", "Abarth" ,"AC", "Acura",
                 "Aixam", "Alfa Romeo", "Alpina", "Alpine", "Amphicar", "Ariel Motor" ,"Artega", "Aspid",
                 "Aston Martin", "Austin", "Autobianchi", "Auverland", "Baic", "Bedford" ,"Bellier", "Bentley",
@@ -116,10 +116,10 @@ public class CarManagement extends JPanel implements ActionListener {
                 "Innocenti", "Iso Rivolta", "Isuzu", "Iveco", "IZH", "Jaguar","Mazda"};
         wahlHersteller = new JComboBox<String>(strHerstellerWahl);
 
-        String[] strGetriebeWahl = {"Manuell" ,"Automatik"};
+        String[] strGetriebeWahl = {" ", "Manuell" ,"Automatik"};
         wahlGetriebe = new JComboBox<String>(strGetriebeWahl);
 
-        String[] strKraftstoffWahl = {"Benzin" ,"Diesel", "Strom"};
+        String[] strKraftstoffWahl = {" ", "Benzin" ,"Diesel", "Strom"};
         wahlKraftstoff = new JComboBox<String>(strKraftstoffWahl);
 
         // Zusammenbau aller Elemente
