@@ -59,6 +59,20 @@ public class CarManagement extends JPanel implements ActionListener {
         headerPanelA.setBackground(Color.GRAY);
         headerPanelA.setOpaque(true);
 
+        // EingabeMaske
+        JPanel linksPaneloben = new JPanel();
+        linksPaneloben.setLayout(new BorderLayout());
+        JPanel innen = new JPanel();
+        linksPaneloben.add(innen, BorderLayout.CENTER);
+        innen.setLayout(new GridLayout(5, 2));
+        // Kontrollelemente erzeugen
+        // Labels
+
+
+        // Table Links
+        JPanel linksPanelunten = new JPanel();
+        linksPanelunten.setLayout(new BorderLayout());
+
         // Table Links
         JPanel linksPanel = new JPanel();
         linksPanel.setLayout(new BorderLayout());
