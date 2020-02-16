@@ -8,6 +8,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.Set;
 import java.util.UUID;
 import java.util.Vector;
@@ -78,7 +80,7 @@ public class CarManagement extends JPanel implements ActionListener {
         labHersteller = new JLabel("Hersteller: ");
         labModell = new JLabel("Modell: ");
         labGetriebe = new JLabel("Getriebe: ");
-        labKraftstoff = new JLabel("Hersteller: ");
+        labKraftstoff = new JLabel("Kraftstoff: ");
         labKilometerstand = new JLabel("Kilometerstand: ");
         // Radio Elemente
         radioVerfuegbar = new JRadioButton("Verfügbar");
@@ -156,7 +158,7 @@ public class CarManagement extends JPanel implements ActionListener {
         DefaultTableModel carModel = new DefaultTableModel(COLUMN_TITLE, 0){
         			public boolean isCellEditable(int row, int column)
         			{
-        				return true;
+        				return false;
         			}
         		};
 
@@ -197,16 +199,37 @@ public class CarManagement extends JPanel implements ActionListener {
         anlegeButton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				carModel.addRow(createDataVector());
-				
+				if(!txtID.getText().trim().equals("")) {
+				carModel.addRow(new Object[]{txtID.getText(), wahlKategorie.getSelectedItem().toString(),
+						wahlHersteller.getSelectedItem().toString(),txtModell.getText(),wahlGetriebe.getSelectedItem().toString()
+						,wahlKraftstoff.getSelectedItem().toString(),txtKilometerstand.getText()});
+				}else {
+					JOptionPane.showMessageDialog(null,"Die ID darf nicht Leer sein");	
+				}
 			}
 		});
        bearbeitenButton.addActionListener(new ActionListener() {
 
 		public void actionPerformed(ActionEvent e) {
 			// get selected row index
-			JOptionPane.showMessageDialog(null,"Die Funktion steht zur Zeit nicht zur Verfügung!");
-		
+			if(carTable.getSelectedRow()==-1) {
+				if(carTable.getRowCount()==0) {
+					JOptionPane.showMessageDialog(null,"Tabelle ist leer.");	
+				}else {
+					JOptionPane.showMessageDialog(null,"Sie müssen ein Fahrzeug auswählen.");
+				}
+			}else {
+				carModel.setValueAt(txtID.getText(), carTable.getSelectedRow(), 0);
+				carModel.setValueAt(wahlKategorie.getSelectedItem().toString(), carTable.getSelectedRow(), 1);
+				carModel.setValueAt(wahlHersteller.getSelectedItem().toString(), carTable.getSelectedRow(), 2);
+				carModel.setValueAt(txtModell.getText(), carTable.getSelectedRow(), 3);
+				carModel.setValueAt(wahlGetriebe.getSelectedItem().toString(), carTable.getSelectedRow(), 4);
+				carModel.setValueAt(wahlKraftstoff.getSelectedItem().toString(), carTable.getSelectedRow(), 5);
+				carModel.setValueAt(txtKilometerstand.getText(), carTable.getSelectedRow(), 6);
+			
+			
+				//JOptionPane.showMessageDialog(null,"Die Funktion steht zur Zeit nicht zur Verfügung!");
+			}
 		}
 		});
 
@@ -222,7 +245,51 @@ public class CarManagement extends JPanel implements ActionListener {
 				JOptionPane.showMessageDialog(null,"Bitte wählen sie eine Zeile aus.");
 			}
 		}
-	});
+       	});
+       
+       	carTable.addMouseListener(new MouseListener() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				txtID.setText(carModel.getValueAt(carTable.getSelectedRow(),0).toString());
+				wahlKategorie.setSelectedItem(carModel.getValueAt(carTable.getSelectedRow(),1).toString());
+				wahlHersteller.setSelectedItem(carModel.getValueAt(carTable.getSelectedRow(),2).toString());
+				txtModell.setText(carModel.getValueAt(carTable.getSelectedRow(),3).toString());
+				wahlGetriebe.setSelectedItem(carModel.getValueAt(carTable.getSelectedRow(),4).toString());
+				wahlKraftstoff.setSelectedItem(carModel.getValueAt(carTable.getSelectedRow(),5).toString());
+				txtKilometerstand.setText(carModel.getValueAt(carTable.getSelectedRow(),6).toString());
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+       		
+       	});
+    	   
+       
+    	   
+       
 
         // ADDS
         headerPanelA.add(textHeaderFahrzeugVerwaltung);
