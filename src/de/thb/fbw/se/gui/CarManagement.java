@@ -24,6 +24,12 @@ public class CarManagement extends JPanel implements ActionListener {
     private JTable carTable;
     private DefaultTableModel carModel;
 
+    // Deklaration Variablen der Eingabemasken
+    JLabel labFahrzeugID, labFahrzeugkategorie, labHersteller, labModell, labGetriebe, labKraftstoff, labKilometerstand;
+    JRadioButton radioVerfuegbar, radioNichtVerfuegbar;
+    JTextField txtID, txtModell, txtKilometerstand;
+    JComboBox<String> wahlKategorie, wahlHersteller, wahlGetriebe, wahlKraftstoff;
+
 
     public CarManagement(CarRentalMainWindow mainWindow) {
        	mw = mainWindow;
@@ -64,16 +70,83 @@ public class CarManagement extends JPanel implements ActionListener {
         linksPaneloben.setLayout(new BorderLayout());
         JPanel innen = new JPanel();
         linksPaneloben.add(innen, BorderLayout.CENTER);
-        innen.setLayout(new GridLayout(5, 2));
+        innen.setLayout(new GridLayout(8, 2));
         // Kontrollelemente erzeugen
         // Labels
+        labFahrzeugID = new JLabel("Fahrzeug ID: ");
+        labFahrzeugkategorie = new JLabel("Fahrzeugkategorie: ");
+        labHersteller = new JLabel("Hersteller: ");
+        labModell = new JLabel("Modell: ");
+        labGetriebe = new JLabel("Getriebe: ");
+        labKraftstoff = new JLabel("Hersteller: ");
+        labKilometerstand = new JLabel("Kilometerstand: ");
+        // Radio Elemente
+        radioVerfuegbar = new JRadioButton("Verfügbar");
+        radioNichtVerfuegbar = new JRadioButton("Nicht verfügbar");
+        ButtonGroup grpVerfuegbarkeit = new ButtonGroup();
+        grpVerfuegbarkeit.add(radioVerfuegbar);
+        grpVerfuegbarkeit.add(radioNichtVerfuegbar);
+        radioVerfuegbar.setSelected(true);
 
+        // Eingabefelder
+        txtID = new JTextField();
+        txtModell = new JTextField();
+        txtKilometerstand = new JTextField();
+
+        // ComboBoxen
+        String[] strKategorieWahl = {"Kleinstwagen" ,"Kleinwagen", "Kompaktklasse",
+                "Mittelklasse", "Obere Mittelklasse", "Luxus", "Cabriolet", "SUV", "VAN"};
+        wahlKategorie = new JComboBox<String>(strKategorieWahl);
+
+        String[] strHerstellerWahl = {"Mercedes-Benz" ,"BMW", "Volkswagen",
+                "Audi", "Ford", "Porsche", "Opel", "9ff", "Abarth" ,"AC", "Acura",
+                "Aixam", "Alfa Romeo", "Alpina", "Alpine", "Amphicar", "Ariel Motor" ,"Artega", "Aspid",
+                "Aston Martin", "Austin", "Autobianchi", "Auverland", "Baic", "Bedford" ,"Bellier", "Bentley",
+                "Bolloré", "Borgward", "Brilliance", "Bugatti", "Buick", "BYD" ,"Cadillac", "Caravans-Wohnm",
+                "Casalini", "Caterham", "Changhe", "Chatenet", "Chery", "Chevrolet" ,"Chrysler", "Citroen",
+                "CityEL", "CMC", "Corvette", "Cupra", "Dacia", "Daewoo" ,"Daimler", "Dangel",
+                "De la Chapelle", "De Tomaso", "Derways", "DSK", "Dodge", "Donkervoort" ,"DR Motor", "DS Automobiles",
+                "Dutton", "e.GO", "Estrima", "Ferrari", "Fiat", "Fisker" ,"Gac Gonow", "Galloper",
+                "GAZ", "GEM", "GEMBALLA", "Gillet", "Giotti Victoria", "GMC" ,"Goupil", "Great Wall",
+                "Grevac", "Haima", "Haval", "Honda", "HUMMER", "Hurtan" ,"Hyundai", "Infiniti",
+                "Innocenti", "Iso Rivolta", "Isuzu", "Iveco", "IZH", "Jaguar"};
+        wahlHersteller = new JComboBox<String>(strHerstellerWahl);
+
+        String[] strGetriebeWahl = {"Manuell" ,"Automatik"};
+        wahlGetriebe = new JComboBox<String>(strGetriebeWahl);
+
+        String[] strKraftstoffWahl = {"Benzin" ,"Diesel", "Strom"};
+        wahlKraftstoff = new JComboBox<String>(strKraftstoffWahl);
+
+        // Zusammenbau aller Elemente
+        innen.add(labFahrzeugID);
+        innen.add(txtID);
+        // Line 2
+        innen.add(labFahrzeugkategorie);
+        innen.add(wahlKategorie);
+        // Line 3
+        innen.add(labHersteller);
+        innen.add(wahlHersteller);
+        // Line 4
+        innen.add(labModell);
+        innen.add(txtModell);
+        // Line 5
+        innen.add(labGetriebe);
+        innen.add(wahlGetriebe);
+        // Line 6
+        innen.add(labKraftstoff);
+        innen.add(wahlKraftstoff);
+        // Line 7
+        innen.add(labKilometerstand);
+        innen.add(txtKilometerstand);
+        innen.add(radioVerfuegbar);
+        innen.add(radioNichtVerfuegbar);
 
         // Table Links
         JPanel linksPanelunten = new JPanel();
         linksPanelunten.setLayout(new BorderLayout());
 
-        // Table Links
+        // Maske + Table Links
         JPanel linksPanel = new JPanel();
         linksPanel.setLayout(new BorderLayout());
 
@@ -98,8 +171,10 @@ public class CarManagement extends JPanel implements ActionListener {
         //flist = new JTable(data, COLUMN_TITLES);
         //flist.setFont(schriftArtListe);
 
-        // PanelLinks + Liste
-        linksPanel.add(new JScrollPane(carTable));
+        // PanelLinks -> Maske & Table
+        linksPanel.add(linksPaneloben, BorderLayout.NORTH);
+        linksPanelunten.add(new JScrollPane(carTable));
+        linksPanel.add(linksPanelunten, BorderLayout.SOUTH);
         
         // rechtsPanel
         rechtsPanel.setLayout(new BorderLayout());
